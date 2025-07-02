@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>مدیریت کاربران</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav>
+    <a href="clients.html">مشتریان</a>
+    <a href="reminders.html">یادآورها</a>
+    <a href="reports.html">گزارش‌ها</a>
+    <a href="profile.html">پروفایل</a>
+    <a href="users.html">مدیریت کاربران</a>
+  </nav>
+  <h1>افزودن کاربر جدید</h1>
+  <div id="admin-panel">
+    <input type="text" id="new-user" placeholder="نام کاربری">
+    <input type="text" id="new-pass" placeholder="رمز عبور">
+    <select id="new-role">
+      <option value="user">کاربر</option>
+      <option value="admin">ادمین</option>
+    </select>
+    <button onclick="addUser()">افزودن</button>
+  </div>
+  <script src="js/users.js"></script>
+</body>
+</html>

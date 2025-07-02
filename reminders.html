@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>یادآورها | CRM</title>
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- تاریخ شمسی -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jalalidatepicker/dist/jalalidatepicker.min.css">
+  <!-- ساعت -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/clockpicker/dist/jquery-clockpicker.min.css">
+</head>
+<body>
+  <nav>
+    <a href="index.html">داشبورد</a>
+    <a href="reminders.html">یادآورها</a>
+    <a href="clients.html">مشتریان</a>
+    <a href="reports.html">گزارش‌ها</a>
+    <a href="profile.html">پروفایل</a>
+  </nav>
+
+  <h1>افزودن یادآوری جدید</h1>
+  <form id="reminder-form">
+    <input type="text" id="title" placeholder="عنوان یادآوری" required>
+    <textarea id="description" placeholder="توضیحات"></textarea>
+    <input type="text" id="date" data-jdp placeholder="تاریخ (شمسی)" required>
+    <input type="text" id="time" placeholder="ساعت (24h)" required>
+    <select id="client-select" required><option value="">انتخاب مشتری</option></select>
+    <select id="priority" required>
+      <option value="">اولویت</option>
+      <option value="کم">🟢 کم</option>
+      <option value="متوسط">🟡 متوسط</option>
+      <option value="زیاد">🔴 زیاد</option>
+    </select>
+    <select id="category" required>
+      <option value="">دسته</option>
+      <option value="جلسه">📅 جلسه</option>
+      <option value="تماس">📞 تماس</option>
+      <option value="پرداخت">💳 پرداخت</option>
+      <option value="پیگیری">🔁 پیگیری</option>
+      <option value="سایر">📌 سایر</option>
+    </select>
+    <select id="repeat" required>
+      <option value="none">بدون تکرار</option>
+      <option value="daily">روزانه</option>
+      <option value="weekly">هفتگی</option>
+      <option value="monthly">ماهانه</option>
+    </select>
+    <button type="submit">ثبت</button>
+  </form>
+
+  <hr>
+  <h2>لیست یادآورها</h2>
+
+  <!-- فیلترها -->
+  <div id="filters">
+    <select id="filter-status">
+      <option value="">وضعیت: همه</option>
+      <option value="done">✅ انجام‌شده</option>
+      <option value="undone">❌ انجام‌نشده</option>
+    </select>
+    <select id="filter-priority">
+      <option value="">اولویت: همه</option>
+      <option value="کم">🟢 کم</option>
+      <option value="متوسط">🟡 متوسط</option>
+      <option value="زیاد">🔴 زیاد</option>
+    </select>
+    <select id="filter-category">
+      <option value="">دسته: همه</option>
+      <option value="جلسه">جلسه</option>
+      <option value="تماس">تماس</option>
+      <option value="پرداخت">پرداخت</option>
+      <option value="پیگیری">پیگیری</option>
+      <option value="سایر">سایر</option>
+    </select>
+    <select id="filter-client"><option value="">مشتری: همه</option></select>
+    <select id="filter-user" style="display:none"><option value="">ثبت‌کننده: همه</option></select>
+    <button onclick="applyFilters()">اعمال</button>
+    <button onclick="clearFilters()">پاک‌سازی</button>
+  </div>
+
+  <!-- مرتب‌سازی -->
+  <div id="sort-options">
+    <label>مرتب‌سازی:</label>
+    <select id="sort-type">
+      <option value="">انتخاب کنید</option>
+      <option value="date-asc">تاریخ ↑</option>
+      <option value="date-desc">تاریخ ↓</option>
+      <option value="priority-high">اولویت (زیاد → کم)</option>
+      <option value="priority-low">اولویت (کم → زیاد)</option>
+    </select>
+  </div>
+
+  <div id="reminder-list"></div>
+
+  <!-- هشدار صوتی -->
+  <audio id="reminder-sound" src="assets/sounds/reminder.wav" preload="auto"></audio>
+
+  <!-- کتابخانه‌ها -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jalalidatepicker/dist/jalalidatepicker.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/clockpicker/dist/jquery-clockpicker.min.js"></script>
+
+  <script>
+    $(function () {
+      jalaliDatepicker.startWatch();
+      $('#time').clockpicker({
+        autoclose: true,
+        placement: 'bottom',
+        align: 'left',
+        donetext: 'تایید',
+        twelvehour: false
+      });
+    });
+  </script>
+
+  <script src="js/reminders.js"></script>
+  <audio id="reminder-sound" src="assets/sounds/reminder.wav" preload="auto"></audio>
+</body>
+</html>

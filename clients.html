@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>مشتریان | CRM</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav>
+    <a href="reminders.html">یادآورها</a>
+    <a href="reports.html">گزارش‌ها</a>
+    <a href="clients.html">مشتریان</a>
+    <a href="profile.html">پروفایل</a>
+    <a href="users.html">کاربران</a>
+  </nav>
+
+  <h1>مشتریان</h1>
+  <button id="show-form-btn">➕ افزودن مشتری جدید</button>
+
+  <form id="client-form" style="display:none; margin-top:20px;">
+    <input type="text" id="company" placeholder="نام شرکت" required>
+    <input type="text" id="buyer" placeholder="نام خریدار" required>
+    <input type="text" id="phone" placeholder="شماره ثابت">
+    <input type="text" id="mobile" placeholder="شماره همراه">
+    <input type="text" id="address" placeholder="آدرس">
+    <input type="text" id="lead" placeholder="سرنخ">
+    <button type="submit">ثبت</button>
+  </form>
+
+  <hr>
+
+  <input type="text" id="search" placeholder="جستجو...">
+  <select id="filter-user"><option value="">همه کاربران</option></select>
+
+  <div id="client-list"></div>
+
+  <script src="js/clients.js"></script>
+</body>
+</html>

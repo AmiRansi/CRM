@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>گزارش‌ها | CRM</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- Persian Datepicker -->
+  <script src="https://unpkg.com/persian-date/dist/persian-date.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/persian-datepicker/dist/css/persian-datepicker.min.css">
+  <script src="https://unpkg.com/persian-datepicker/dist/js/persian-datepicker.min.js"></script>
+
+  <!-- jQuery Timepicker -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.13.18/jquery.timepicker.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.13.18/jquery.timepicker.min.js"></script>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- PDF tools -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <!-- CSS پروژه -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- JS فایل -->
+  <script src="js/reports.js" defer></script>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">داشبورد</a>
+  <a href="clients.html">مشتریان</a>
+  <a href="reminders.html">یادآورها</a>
+  <a href="reports.html"><b>📊 گزارش‌ها</b></a>
+  <a href="profile.html">پروفایل</a>
+</nav>
+
+<h1>📊 گزارش‌ها</h1>
+
+<div id="filter-box">
+  <label>از تاریخ:</label><input type="text" id="filter-from">
+  <label>تا تاریخ:</label><input type="text" id="filter-to">
+  <label>مشتری:</label><select id="filter-client"><option value="">همه</option></select>
+  <label>کلمه کلیدی:</label><input type="text" id="filter-keyword" placeholder="عنوان یا توضیح">
+  <button id="apply-filter">نمایش</button>
+</div>
+
+<button id="csv-btn" style="display:none;">📥 خروجی CSV</button>
+<button id="pdf-btn" style="display:none;">📄 خروجی PDF</button>
+<button id="chart-btn" style="display:none;">📈 نمایش نمودار</button>
+<canvas id="chart" style="max-width:100%;height:200px;display:none;"></canvas>
+
+<button id="toggle-report-form">➕ افزودن گزارش دستی</button>
+
+<div id="manual-report-box">
+  <h3>📝 فرم گزارش دستی</h3>
+  <form id="manual-report-form">
+    <label>مشتری:</label><select id="manual-client-select" required></select>
+    <label>عنوان گزارش:</label><input type="text" id="manual-title" required>
+    <label>توضیحات:</label><textarea rows="3" id="manual-description" required></textarea>
+    <label>تاریخ:</label><input type="text" id="manual-date" required>
+    <label>ساعت:</label><input type="text" id="manual-time" required>
+    <button type="submit">ثبت گزارش</button>
+  </form>
+</div>
+
+<!-- جدول گزارش -->
+<table>
+  <thead>
+    <tr><th>کاربر</th><th>عملیات</th><th>مشتری</th><th>توضیح</th><th>زمان</th></tr>
+  </thead>
+  <tbody id="log-table"></tbody>
+</table>
+
+<!-- خروجی PDF پنهان -->
+<div id="pdf-content" style="display:none; padding: 20px; background: white; width: 800px;">
+  <h2 style="text-align:center; font-family:Tahoma;">گزارش‌ها</h2>
+  <div id="pdf-table"></div>
+</div>
+
+</body>
+</html>

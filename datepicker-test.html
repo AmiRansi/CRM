@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>تست نهایی تقویم شمسی</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://unpkg.com/persian-date/dist/persian-date.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/persian-datepicker/dist/css/persian-datepicker.min.css">
+  <script src="https://unpkg.com/persian-datepicker/dist/js/persian-datepicker.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/clockpicker/dist/bootstrap-clockpicker.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/clockpicker/dist/bootstrap-clockpicker.min.js"></script>
+
+  <style>
+    body { direction: rtl; font-family: Tahoma; padding: 20px;}
+    input, button { margin: 10px 0; font-size: 16px; padding: 8px; width: 200px; display: block;}
+  </style>
+</head>
+<body>
+
+  <input type="text" id="date-input" placeholder="انتخاب تاریخ">
+  <input type="text" id="time-input" placeholder="انتخاب ساعت">
+  <button id="test-btn">نشان بده</button>
+
+  <script>
+    $(function(){
+      $('#date-input').pDatepicker({ format: 'YYYY/MM/DD', initialValue: false });
+      $('#time-input').clockpicker({ autoclose: true, donetext: 'تأیید', twelvehour: false });
+
+      $('#test-btn').click(() => alert(`تاریخ: ${$('#date-input').val()}\nساعت: ${$('#time-input').val()}`));
+    });
+  </script>
+
+</body>
+</html>
