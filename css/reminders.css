@@ -1,0 +1,414 @@
+/* فایل css/reminders.css */
+
+/* استایل‌های کلی */
+body {
+    font-family: 'vazir', 'Segoe UI', Tahoma, sans-serif; /* فونت وزیر، با پشتیبان سگویو یوام */
+    direction: rtl;
+    padding: 0; /* حذف padding کلی */
+    background-color: #e6eaf0; /* آبی خاکستری ملایم */
+    color: #343a40;
+    line-height: 1.6;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto; /* وسط‌چین کردن کانتینر */
+    padding: 20px;
+  }
+  
+  h1,
+  h2,
+  h3 {
+    color: #2c3e50; /* سرمه‌ای تیره */
+    margin-bottom: 25px;
+    text-align: center;
+    font-weight: 600;
+  }
+  
+  h1 {
+    font-size: 2.5rem; /* سایز بزرگتر برای عنوان اصلی */
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+  }
+  
+  h3 {
+    font-size: 1.4rem;
+  }
+  
+  /* بخش فرم */
+  .form-section {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    margin-bottom: 40px;
+    border: 1px solid #d0d9e2;
+  }
+  
+  .form-section h2 {
+    margin-bottom: 30px;
+  }
+  
+  #reminder-form .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    align-items: center; /* عمودی وسط‌چین کردن آیتم‌ها */
+  }
+  
+  #reminder-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #495057;
+  }
+  
+  #reminder-form input[type="text"],
+  #reminder-form input[type="date"],
+  #reminder-form input[type="time"],
+  #reminder-form textarea,
+  #reminder-form select {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: 'vazir', Tahoma, sans-serif;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  
+  #reminder-form input:focus,
+  #reminder-form textarea:focus,
+  #reminder-form select:focus {
+    border-color: #4dabf7; /* آبی روشن‌تر */
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(77, 171, 247, 0.3);
+  }
+  
+  #reminder-form textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  #reminder-form select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%236c757d' d='M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: left 15px center;
+    padding-right: 50px;
+    padding-left: 20px;
+    background-color: #fff; /* اطمینان از رنگ پس‌زمینه */
+  }
+  
+  .form-submit-button {
+    grid-column: 1 / -1; /* دکمه در تمام عرض */
+    background-color: #3498db; /* آبی خالص */
+    color: #fff;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 500;
+    transition: background-color 0.3s, transform 0.2s;
+    justify-self: center; /* وسط‌چین کردن دکمه در ستون خود */
+    width: fit-content; /* تنظیم عرض به اندازه محتوا */
+  }
+  
+  .form-submit-button:hover {
+    background-color: #2980b9; /* آبی تیره‌تر */
+    transform: translateY(-2px);
+  }
+  
+  /* بخش فیلترها و مرتب‌سازی */
+  .controls-section {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    margin-bottom: 40px;
+    border: 1px solid #d0d9e2;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* فضا بین عناصر */
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .controls-section h3 {
+    margin-bottom: 0; /* حذف مارجین پایینی برای عنوان */
+    text-align: right; /* راست‌چین کردن عنوان */
+  }
+  
+  .filter-group,
+  .sort-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .filter-group label,
+  .sort-group label {
+    font-weight: 500;
+    color: #495057;
+  }
+  
+  .filter-group select,
+  .sort-group select {
+    padding: 12px;
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: 'vazir', Tahoma, sans-serif;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    min-width: 180px; /* حداقل عرض برای سلکت‌ها */
+  }
+  
+  .filter-group select:focus,
+  .sort-group select:focus {
+    border-color: #4dabf7;
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(77, 171, 247, 0.3);
+  }
+  
+  .filter-actions button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .apply-filters {
+    background-color: #28a745; /* سبز */
+    color: #fff;
+  }
+  
+  .apply-filters:hover {
+    background-color: #218838; /* سبز تیره‌تر */
+  }
+  
+  .clear-filters {
+    background-color: #6c757d; /* خاکستری */
+    color: #fff;
+  }
+  
+  .clear-filters:hover {
+    background-color: #5a6268; /* خاکستری تیره‌تر */
+  }
+  
+  /* بخش لیست یادآورها */
+  #reminder-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 30px;
+  }
+  
+  .reminder-card {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    position: relative;
+    border: 1px solid #d0d9e2;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden; /* برای اینکه نوار اولویت داخل بماند */
+  }
+  
+  .reminder-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  }
+  
+  /* نوار اولویت */
+  .priority-bar {
+    position: absolute;
+    top: 0;
+    left: 0; /* تغییر به چپ */
+    width: 5px; /* نوار باریک در سمت چپ */
+    height: 100%;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px; /* گرد کردن گوشه پایین */
+    border-top-right-radius: 0; /* حذف گردی گوشه راست */
+    border-bottom-right-radius: 0;
+  }
+  
+  /* رنگ‌های اولویت */
+  .priority-low .priority-bar {
+    background-color: #81c784; /* سبز ملایم */
+  }
+  
+  .priority-medium .priority-bar {
+    background-color: #ffeb3b; /* زرد */
+  }
+  
+  .priority-high .priority-bar {
+    background-color: #e57373; /* قرمز ملایم */
+  }
+  
+  .reminder-card .card-content {
+    padding-left: 15px; /* فضای خالی برای نوار اولویت */
+  }
+  
+  .reminder-card .header {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .reminder-card .header strong {
+    color: #3498db; /* آبی */
+    font-size: 1.3rem;
+    display: block; /* عنوان در خط خودش */
+    margin-bottom: 5px;
+  }
+  
+  .reminder-card .meta-info {
+    font-size: 0.9rem;
+    color: #6c757d; /* خاکستری */
+  }
+  
+  .reminder-card .meta-info .status-icon {
+    margin-left: 5px; /* تغییر به چپ */
+    color: #28a745; /* سبز */
+  }
+  
+  /* جزئیات */
+  .reminder-details {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px dashed #e0e0e0;
+  }
+  
+  .reminder-details p {
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+  }
+  
+  .reminder-details p strong {
+    color: #495057;
+    min-width: 120px; /* عرض ثابت برای برچسب‌ها */
+    display: inline-block;
+  }
+  
+  /* دکمه‌های عمل */
+  .action-buttons {
+    margin-top: 25px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* فاصله بین دکمه‌ها */
+  }
+  
+  .action-buttons button {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.3s, color 0.3s, transform 0.2s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .action-buttons button:hover {
+    transform: translateY(-1px);
+  }
+  
+  .action-buttons .done {
+    background-color: #5cb85c; /* سبز */
+    color: #fff;
+  }
+  
+  .action-buttons .done:hover {
+    background-color: #4cae4c; /* سبز تیره‌تر */
+  }
+  
+  .action-buttons .edit {
+    background-color: #f0ad4e; /* نارنجی */
+    color: #fff;
+  }
+  
+  .action-buttons .edit:hover {
+    background-color: #ec971f; /* نارنجی تیره‌تر */
+  }
+  
+  .action-buttons .delete {
+    background-color: #d9534f; /* قرمز */
+    color: #fff;
+  }
+  
+  .action-buttons .delete:hover {
+    background-color: #c9302c; /* قرمز تیره‌تر */
+  }
+  
+  /* وضعیت انجام شده (کلاس اضافی روی کارت) */
+  .reminder-card.status-done {
+    background-color: #e8f5e9; /* سبز خیلی ملایم */
+    border-color: #c8e6c9;
+  }
+  
+  .reminder-card.status-done .action-buttons .done {
+    background-color: #7cb342; /* سبز تیره */
+    color: #fff;
+  }
+  
+  .reminder-card.status-done .action-buttons .done:hover {
+    background-color: #558b2f;
+  }
+  
+  .reminder-card.status-done .meta-info .status-icon {
+    color: #5cb85c; /* سبز */
+  }
+  
+  /* پیام هنگام خالی بودن لیست */
+  .no-reminders {
+    text-align: center;
+    padding: 40px;
+    color: #6c757d;
+    font-size: 1.1rem;
+  }
+  
+  /* دکمه اعمال فیلتر در حالت کوچک */
+  @media (max-width: 768px) {
+    .controls-section {
+      flex-direction: column;
+      align-items: stretch; /* کشیدن عناصر به عرض کامل */
+    }
+  
+    .filter-group,
+    .sort-group {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 10px;
+    }
+  
+    .filter-group select,
+    .sort-group select {
+      min-width: unset; /* حذف حداقل عرض */
+      width: 100%;
+    }
+  
+    .filter-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+  
+    .filter-actions button {
+      flex-grow: 1; /* دکمه‌ها فضا را پر کنند */
+    }
+  
+    #reminder-list {
+      grid-template-columns: 1fr; /* یک ستون در صفحه کوچک */
+    }
+  
+    .reminder-card {
+      margin-bottom: 20px;
+    }
+  }
+  

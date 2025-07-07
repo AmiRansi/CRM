@@ -36,8 +36,6 @@ input, textarea, select {
   border-radius: 3px;
 }
 
-
-
 table {
   margin-top: 30px;
   width: 100%;
@@ -134,17 +132,21 @@ th, td {
   border-radius: 4px;
   background: #fff;
 }
+
 .chart-container {
   max-width: 600px;
   height: 300px;
   margin: auto;
 }
+
 .tab {
   display: none;
 }
+
 .tab.active {
   display: block;
 }
+
 .always-visible {
   display: block !important;
   background: #fff;
@@ -153,10 +155,12 @@ th, td {
   border-radius: 6px;
   margin-bottom: 20px;
 }
+
 .note-list {
   list-style: none;
   padding: 0;
 }
+
 .note-list li {
   background: #f4f4f4;
   padding: 10px;
@@ -164,28 +168,34 @@ th, td {
   margin-bottom: 10px;
   font-size: 14px;
 }
+
 .note-list small {
   color: #666;
 }
+
 .note-actions {
   margin-top: 5px;
 }
+
 .note-actions button {
   margin-left: 5px;
   font-size: 12px;
   padding: 4px 6px;
   cursor: pointer;
 }
+
 .chart-container {
   max-width: 100%;
   height: 300px;
 }
+
 .dashboard-cards {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
   margin: 20px 0;
 }
+
 .card {
   flex: 1 1 200px;
   background: #f0f4f8;
@@ -194,11 +204,13 @@ th, td {
   border-radius: 8px;
   box-shadow: 0 0 4px rgba(0,0,0,0.1);
 }
+
 .quick-links {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
+
 .btn {
   background: #0077cc;
   color: white;
@@ -212,6 +224,7 @@ th, td {
   margin-left: 15px;
   font-weight: bold;
 }
+
 #notif-count {
   background: red;
   color: white;
@@ -227,6 +240,7 @@ th, td {
   margin-bottom: 5px;
   border-radius: 4px;
 }
+
 body {
   font-family: Tahoma, sans-serif;
   direction: rtl;
@@ -294,7 +308,6 @@ h1, h3 {
   border: 1px solid #ddd;
   font-size: 14px;
 }
-
 
 canvas {
   width: 100% !important;
