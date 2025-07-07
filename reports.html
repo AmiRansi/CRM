@@ -20,29 +20,24 @@
   <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-  <!-- jsPDF & html2pdf -->
+  <!-- jsPDF -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <!-- html2pdf -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
-  <!-- CSS پروژه -->
+  <!-- استایل پروژه -->
   <link rel="stylesheet" href="css/style.css">
 
-  <!-- اسکریپت صفحه -->
+  <!-- اسکریپت گزارش‌ها -->
   <script src="js/reports.js" defer></script>
 </head>
 <body>
 
-  <nav>
-    <a href="index.html">داشبورد</a>
-    <a href="clients.html">مشتریان</a>
-    <a href="reminders.html">یادآورها</a>
-    <a href="reports.html"><b>📊 گزارش‌ها</b></a>
-    <a href="profile.html">پروفایل</a>
-  </nav>
+  <div id="navbar-container"></div>
 
   <h1>📊 گزارش‌ها</h1>
 
-  <!-- فیلترها -->
   <div id="filter-box">
     <label>از تاریخ:</label><input type="text" id="filter-from">
     <label>تا تاریخ:</label><input type="text" id="filter-to">
@@ -52,59 +47,59 @@
     <button id="apply-filter">نمایش</button>
   </div>
 
-  <!-- دکمه‌ها -->
   <button id="csv-btn" style="display:none;">📥 خروجی CSV</button>
   <button id="pdf-btn" style="display:none;">📄 خروجی PDF</button>
   <button id="chart-btn" style="display:none;">📈 نمایش نمودار</button>
 
-  <!-- ناحیه نمودار -->
-  <div id="chart-container" style="display: none; margin-top: 20px;">
-    <div style="margin-bottom: 10px;">
-      <label><input type="radio" name="chartType" value="date" checked> 📅 بر اساس تاریخ</label>
-      <label><input type="radio" name="chartType" value="user"> 👤 بر اساس کاربر</label>
-    </div>
-    <div id="user-select-wrapper" style="display: none; margin-bottom: 10px;">
-      <label>کاربر:</label>
-      <select id="user-select">
-        <option value="all">📊 همه کاربران</option>
-      </select>
-    </div>
-    <canvas id="chart" style="width: 100%; max-width: 600px; height: 350px;"></canvas>
+  <!-- تنظیمات نمودار -->
+  <div id="chart-settings" style="display:none; margin-top:10px;">
+    <label for="chart-mode">نوع نمودار:</label>
+    <select id="chart-mode">
+      <option value="date">بر اساس تاریخ گزارش‌ها</option>
+      <option value="user">بر اساس کاربران</option>
+    </select>
   </div>
 
-  <!-- فرم گزارش دستی -->
+  <!-- کانتینر نمودار -->
+  <div id="chart-container" style="display: none; margin-top: 20px;">
+    <canvas id="chart" style="max-width: 100%; max-height: 400px;"></canvas>
+  </div>
+
   <button id="toggle-report-form">➕ افزودن گزارش دستی</button>
 
-  <div id="manual-report-box" style="display: none;">
+  <div id="manual-report-box" style="display:none;">
     <h3>📝 فرم گزارش دستی</h3>
     <form id="manual-report-form">
-      <label>مشتری:</label>
-      <select id="manual-client-select" required></select>
-      <label>عنوان گزارش:</label>
-      <input type="text" id="manual-title" required>
-      <label>توضیحات:</label>
-      <textarea rows="3" id="manual-description" required></textarea>
-      <label>تاریخ:</label>
-      <input type="text" id="manual-date" required>
-      <label>ساعت:</label>
-      <input type="text" id="manual-time" required>
+      <label>مشتری:</label><select id="manual-client-select" required></select>
+      <label>عنوان گزارش:</label><input type="text" id="manual-title" required>
+      <label>توضیحات:</label><textarea rows="3" id="manual-description" required></textarea>
+      <label>تاریخ:</label><input type="text" id="manual-date" required>
+      <label>ساعت:</label><input type="text" id="manual-time" required>
       <button type="submit">ثبت گزارش</button>
     </form>
   </div>
 
-  <!-- جدول گزارش‌ها -->
-  <table id="report-content">
+  <table>
     <thead>
-      <tr>
-        <th>کاربر</th>
-        <th>عملیات</th>
-        <th>مشتری</th>
-        <th>توضیح</th>
-        <th>زمان</th>
-      </tr>
+      <tr><th>کاربر</th><th>عملیات</th><th>مشتری</th><th>توضیح</th><th>زمان</th></tr>
     </thead>
     <tbody id="log-table"></tbody>
   </table>
-
+  <script>
+    fetch("navbar.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("navbar-container").innerHTML = html;
+        const script = document.createElement("script");
+        script.src = "js/navbar.js";
+        script.onload = () => {
+          if (typeof loadTodayNotifications === "function") {
+            loadTodayNotifications();
+          }
+        };
+        document.body.appendChild(script);
+      });
+  </script>
+  
 </body>
 </html>

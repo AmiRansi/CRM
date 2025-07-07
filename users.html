@@ -1,28 +1,57 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-  <meta charset="UTF-8">
-  <title>مدیریت کاربران</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <title>مدیریت کاربران | CRM</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <nav>
-    <a href="clients.html">مشتریان</a>
-    <a href="reminders.html">یادآورها</a>
-    <a href="reports.html">گزارش‌ها</a>
-    <a href="profile.html">پروفایل</a>
-    <a href="users.html">مدیریت کاربران</a>
-  </nav>
-  <h1>افزودن کاربر جدید</h1>
-  <div id="admin-panel">
-    <input type="text" id="new-user" placeholder="نام کاربری">
-    <input type="text" id="new-pass" placeholder="رمز عبور">
-    <select id="new-role">
+  <div id="navbar-container"></div>
+
+  <h1>👥 مدیریت کاربران</h1>
+
+  <button id="show-user-form">➕ افزودن کاربر</button>
+
+  <form id="user-form" style="display:none; margin-top:20px;">
+    <input type="text" id="username" placeholder="نام کاربری" required>
+    <input type="text" id="fullname" placeholder="نام کامل" required>
+    <input type="password" id="password" placeholder="رمز عبور" required>
+    <select id="role" required>
+      <option value="">انتخاب نقش</option>
       <option value="user">کاربر</option>
-      <option value="admin">ادمین</option>
+      <option value="admin">مدیر کل</option>
     </select>
-    <button onclick="addUser()">افزودن</button>
-  </div>
+    <button type="submit">ذخیره</button>
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th>نام کاربری</th>
+        <th>نام کامل</th>
+        <th>نقش</th>
+        <th>عملیات</th>
+      </tr>
+    </thead>
+    <tbody id="user-table"></tbody>
+  </table>
+
   <script src="js/users.js"></script>
+  <script src="js/navbar.js"></script>
+  <script>
+    fetch("navbar.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("navbar-container").innerHTML = html;
+        const script = document.createElement("script");
+        script.src = "js/navbar.js";
+        script.onload = () => {
+          if (typeof loadTodayNotifications === "function") {
+            loadTodayNotifications();
+          }
+        };
+        document.body.appendChild(script);
+      });
+  </script>
 </body>
 </html>

@@ -1,0 +1,77 @@
+/* ---------- ناوبار ---------- */
+.navbar {
+    background-color: #ed1c22;
+    color: white;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    direction: rtl;
+  }
+  
+  .navbar-right a,
+  .navbar-left a {
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .navbar-right a:hover,
+  .navbar-right a.active {
+    text-decoration: underline;
+  }
+  
+  /* ---------- آیکون و باکس اعلان ---------- */
+  .notif-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+  
+  #notification-icon {
+    position: relative;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  
+  #notif-count {
+    background-color: yellow;
+    color: black;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 50%;
+    position: absolute;
+    top: -5px;
+    right: -10px;
+  }
+  
+  #notification-popup {
+    position: absolute;
+    top: 60px;
+    left: 0px; /* 👈 از سمت راست باز بشه، نه left */
+    width: 300px;
+    background: white;
+    border: 1px solid #ed1c22;
+    border-radius: 5px;
+    padding: 0px;
+    display: none;
+    box-shadow: 0 0 10px rgba(0,0,0,0.15);
+    z-index: 1000;
+  }
+  
+  
+  .notif-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: #222;
+  }
+  
+  .notif-list li {
+    padding: 8px 10px;
+    font-size: 14px;
+    border-bottom: 1px solid #222;
+  }
+  #notification-popup .notif-list li {
+  color: #222;
+}

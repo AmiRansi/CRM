@@ -2,19 +2,70 @@
 <html lang="fa">
 <head>
   <meta charset="UTF-8">
-  <title>پروفایل</title>
+  <title>پروفایل | CRM</title>
   <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
 <body>
-  <nav>
-    <a href="clients.html">مشتریان</a>
-    <a href="reminders.html">یادآورها</a>
-    <a href="reports.html">گزارش‌ها</a>
-    <a href="profile.html">پروفایل</a>
-    <a href="users.html">مدیریت کاربران</a>
-  </nav>
-  <h1>پروفایل</h1>
-  <div id="profile-info"></div>
-  <script src="js/profile.js"></script>
+  <div id="navbar-container"></div>
+
+  <h1>👤 پروفایل من</h1>
+
+  <div class="card">
+    <p><b>نام کاربری:</b> <span id="username-display"></span></p>
+    <p><b>نقش کاربر:</b> <span id="role-display"></span></p>
+    <p><b>نام کامل:</b> <span id="fullname-display"></span></p>
+    <p><b>ایمیل:</b> <span id="email-display"></span></p>
+  </div>
+
+  <hr>
+
+  <h3>✏️ ویرایش اطلاعات</h3>
+  <form id="edit-form">
+    <input type="text" id="fullName" placeholder="نام کامل">
+    <input type="email" id="email" placeholder="ایمیل">
+    <button type="submit">ذخیره تغییرات</button>
+  </form>
+
+  <hr>
+
+  <h3>🔒 تغییر رمز عبور</h3>
+  <form id="password-form">
+    <input type="password" id="old-password" placeholder="رمز فعلی" required>
+    <input type="password" id="new-password" placeholder="رمز جدید" required>
+    <input type="password" id="confirm-password" placeholder="تأیید رمز جدید" required>
+    <button type="submit">تغییر رمز</button>
+  </form>
+
+  <hr>
+
+  <button id="logout-btn">🚪 خروج</button>
+
+  <!-- بخش بکاپ فقط برای ادمین -->
+  <div id="admin-backup" style="margin-top: 30px; display: none;">
+    <h3>📦 خروجی بکاپ‌ها</h3>
+    <button id="export-users-btn">📋 کاربران</button>
+    <button id="export-clients-btn">👥 مشتریان</button>
+    <button id="export-reminders-btn">⏰ یادآورها</button>
+    <button id="export-logs-btn">📊 گزارش‌ها</button>
+  </div>
+
+  <script src="js/profile.js" defer></script>
+  <script>
+    fetch("navbar.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("navbar-container").innerHTML = html;
+        const script = document.createElement("script");
+        script.src = "js/navbar.js";
+        script.onload = () => {
+          if (typeof loadTodayNotifications === "function") {
+            loadTodayNotifications();
+          }
+        };
+        document.body.appendChild(script);
+      });
+  </script>
 </body>
 </html>

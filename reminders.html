@@ -11,13 +11,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/clockpicker/dist/jquery-clockpicker.min.css">
 </head>
 <body>
-  <nav>
-    <a href="index.html">داشبورد</a>
-    <a href="reminders.html">یادآورها</a>
-    <a href="clients.html">مشتریان</a>
-    <a href="reports.html">گزارش‌ها</a>
-    <a href="profile.html">پروفایل</a>
-  </nav>
+  <div id="navbar-container"></div>
 
   <h1>افزودن یادآوری جدید</h1>
   <form id="reminder-form">
@@ -116,5 +110,21 @@
 
   <script src="js/reminders.js"></script>
   <audio id="reminder-sound" src="assets/sounds/reminder.wav" preload="auto"></audio>
+  <script>
+    fetch("navbar.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("navbar-container").innerHTML = html;
+        const script = document.createElement("script");
+        script.src = "js/navbar.js";
+        script.onload = () => {
+          if (typeof loadTodayNotifications === "function") {
+            loadTodayNotifications();
+          }
+        };
+        document.body.appendChild(script);
+      });
+  </script>
+  
 </body>
 </html>

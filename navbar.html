@@ -1,0 +1,22 @@
+<!-- navbar.html -->
+<nav class="navbar">
+  <div class="navbar-right">
+    <a href="index.html" class="active">🏠 داشبورد</a>
+    <a href="clients.html">👥 مشتریان</a>
+    <a href="reminders.html">⏰ یادآورها</a>
+    <a href="reports.html">📊 گزارش‌ها</a>
+    <a href="profile.html">👤 پروفایل</a>
+    <a href="users.html" id="admin-users-link" style="display: none;">👑 کاربران</a>
+  </div>
+
+  <div class="navbar-left">
+    <div class="notif-wrapper">
+      <div id="notification-icon" onclick="toggleNotifications()">
+        🔔 <span id="notif-count">0</span>
+      </div>
+      <div id="notification-popup">
+        <ul id="notification-list" class="notif-list"></ul>
+      </div>
+    </div>
+  </div>
+</nav>

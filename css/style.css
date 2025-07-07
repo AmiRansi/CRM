@@ -36,16 +36,7 @@ input, textarea, select {
   border-radius: 3px;
 }
 
-button {
-  margin-top: 15px;
-  padding: 8px 20px;
-  font-size: 15px;
-  cursor: pointer;
-  background: #0077cc;
-  color: white;
-  border: none;
-  border-radius: 4px;
-}
+
 
 table {
   margin-top: 30px;
@@ -109,4 +100,286 @@ th, td {
   max-width: 100%;
   height: 300px !important;
   margin-top: 15px;
+}
+
+/* نمودار مشتری در client-details.html */
+#activityChart {
+  max-width: 100% !important;
+  max-height: 300px !important;
+}
+
+/* کانتینر نمودار */
+.chart-container {
+  max-width: 600px;
+  height: 300px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+/* دکمه‌های جزئیات، ویرایش، حذف */
+.list-group-item .btn {
+  font-size: 13px;
+  padding: 5px 10px;
+  margin: 2px;
+}
+
+.list-group-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  margin-bottom: 6px;
+  border-radius: 4px;
+  background: #fff;
+}
+.chart-container {
+  max-width: 600px;
+  height: 300px;
+  margin: auto;
+}
+.tab {
+  display: none;
+}
+.tab.active {
+  display: block;
+}
+.always-visible {
+  display: block !important;
+  background: #fff;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+.note-list {
+  list-style: none;
+  padding: 0;
+}
+.note-list li {
+  background: #f4f4f4;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+.note-list small {
+  color: #666;
+}
+.note-actions {
+  margin-top: 5px;
+}
+.note-actions button {
+  margin-left: 5px;
+  font-size: 12px;
+  padding: 4px 6px;
+  cursor: pointer;
+}
+.chart-container {
+  max-width: 100%;
+  height: 300px;
+}
+.dashboard-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin: 20px 0;
+}
+.card {
+  flex: 1 1 200px;
+  background: #f0f4f8;
+  padding: 15px;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 0 4px rgba(0,0,0,0.1);
+}
+.quick-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.btn {
+  background: #0077cc;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+#notification-icon {
+  float: left;
+  margin-left: 15px;
+  font-weight: bold;
+}
+#notif-count {
+  background: red;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+.list-group-item {
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 8px 10px;
+  margin-bottom: 5px;
+  border-radius: 4px;
+}
+body {
+  font-family: Tahoma, sans-serif;
+  direction: rtl;
+  padding: 30px;
+  background-color: #f9f9f9;
+  margin: 0;
+}
+
+nav {
+  background: #f0f0f0;
+  padding: 10px 20px;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+nav a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #333;
+}
+
+h1, h3 {
+  margin-top: 30px;
+  color: #333;
+}
+
+.dashboard-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.card {
+  background-color: #ffffff;
+  padding: 20px;
+  border: 1px solid #ccc;
+  flex: 1 1 200px;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  font-size: 16px;
+}
+
+.dashboard-section {
+  background: #ffffff;
+  padding: 20px;
+  margin: 20px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.list-group {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list-group-item {
+  background: #f7f7f7;
+  margin-bottom: 8px;
+  padding: 10px 15px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+
+canvas {
+  width: 100% !important;
+  max-width: 100%;
+  height: auto !important;
+}
+
+/* اعلان بالای صفحه */
+#notification-icon {
+  position: relative;
+  cursor: pointer;
+}
+
+#notif-count {
+  background: red;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+  position: absolute;
+  top: -8px;
+  right: -10px;
+}
+
+/* پاپ‌آپ اعلان */
+/* #notification-popup {
+  display: none;
+  position: absolute;
+  top: 50px;
+  right: 20px;
+  width: 250px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  z-index: 9999;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+#notification-popup ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#notification-popup li {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+} */
+.profile-box {
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 6px;
+}
+
+.profile-avatar {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile-avatar img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.summary-box {
+  background: #f4f4f4;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.theme-toggle {
+  margin-top: 20px;
+}
+
+button.danger {
+  background: #cc0000;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  margin-top: 10px;
 }

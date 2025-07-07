@@ -1,0 +1,63 @@
+@font-face {
+    font-family: 'Vazir';
+    src: url('../assets/fonts/Vazir-Medium.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  body {
+    font-family: 'Vazir', Tahoma, sans-serif;
+    background-color: #fff;
+    direction: rtl;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .login-container {
+    max-width: 360px;
+    margin: 80px auto;
+    padding: 30px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fafafa;
+    box-shadow: 0 0 15px rgba(0,0,0,0.05);
+    text-align: center;
+  }
+  
+  h1 {
+    color: #ed1c22;
+    margin-bottom: 25px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    font-family: inherit;
+  }
+  
+  button {
+    background-color: #ed1c22;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  
+  button:hover {
+    background-color: #c3111b;
+  }
+  
+  #error-message {
+    color: red;
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  

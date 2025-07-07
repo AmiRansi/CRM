@@ -4,36 +4,87 @@
   <meta charset="UTF-8">
   <title>مشتریان | CRM</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/clients.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
 <body>
-  <nav>
-    <a href="reminders.html">یادآورها</a>
-    <a href="reports.html">گزارش‌ها</a>
-    <a href="clients.html">مشتریان</a>
-    <a href="profile.html">پروفایل</a>
-    <a href="users.html">کاربران</a>
-  </nav>
+  <div id="navbar-container"></div>
 
   <h1>مشتریان</h1>
-  <button id="show-form-btn">➕ افزودن مشتری جدید</button>
 
-  <form id="client-form" style="display:none; margin-top:20px;">
-    <input type="text" id="company" placeholder="نام شرکت" required>
-    <input type="text" id="buyer" placeholder="نام خریدار" required>
-    <input type="text" id="phone" placeholder="شماره ثابت">
-    <input type="text" id="mobile" placeholder="شماره همراه">
-    <input type="text" id="address" placeholder="آدرس">
-    <input type="text" id="lead" placeholder="سرنخ">
-    <button type="submit">ثبت</button>
+  <div class="form-toggle-box">
+    <button id="show-form-btn" class="add-client-btn">➕ افزودن مشتری جدید</button>
+  </div>
+
+  <form id="client-form" class="styled-form hidden">
+    <div class="form-grid">
+      <input type="text" id="company" placeholder="نام شرکت *" required>
+      <input type="text" id="buyer" placeholder="نام خریدار *" required>
+      <input type="text" id="phone" placeholder="شماره ثابت">
+      <input type="text" id="mobile" placeholder="شماره همراه">
+      <input type="text" id="email" placeholder="ایمیل">
+      <input type="text" id="industry" placeholder="صنعت">
+      <input type="text" id="website" placeholder="وب‌سایت">
+      <input type="text" id="address" placeholder="آدرس">
+      <input type="text" id="lead" placeholder="سرنخ">
+      <select id="status">
+        <option value="فعال">فعال</option>
+        <option value="غیرفعال">غیرفعال</option>
+      </select>
+      <select id="rating">
+        <option value="5">⭐️⭐️⭐️⭐️⭐️</option>
+        <option value="4">⭐️⭐️⭐️⭐️</option>
+        <option value="3">⭐️⭐️⭐️</option>
+        <option value="2">⭐️⭐️</option>
+        <option value="1">⭐️</option>
+      </select>
+    </div>
+    <button type="submit" class="submit-btn">ثبت مشتری</button>
   </form>
 
   <hr>
 
-  <input type="text" id="search" placeholder="جستجو...">
-  <select id="filter-user"><option value="">همه کاربران</option></select>
+  <div class="import-section">
+    <h3>📥 درون‌ریزی مشتریان از فایل اکسل</h3>
+    <div class="import-box">
+      <input type="file" id="import-file" accept=".xlsx, .xls">
+      <button id="import-btn">📤 بارگذاری فایل مخاطبین</button>
+      <button id="download-template">📄 دریافت قالب اکسل</button>
+    </div>
+    <p class="import-hint">فایل باید شامل ستون‌هایی مانند "شرکت"، "خریدار"، "شماره همراه"، "آدرس" و ... باشد.</p>
+  </div>
+  
+
+  <hr>
+
+  <div class="filter-section">
+    <input type="text" id="search" placeholder="🔍 جستجوی نام شرکت..." />
+    <select id="filter-user">
+      <option value="">👤 همه کاربران</option>
+    </select>
+  </div>
+  
 
   <div id="client-list"></div>
 
   <script src="js/clients.js"></script>
+  <script>
+    fetch("navbar.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("navbar-container").innerHTML = html;
+        const script = document.createElement("script");
+        script.src = "js/navbar.js";
+        script.onload = () => {
+          if (typeof loadTodayNotifications === "function") {
+            loadTodayNotifications();
+          }
+        };
+        document.body.appendChild(script);
+      });
+  </script>
 </body>
 </html>
