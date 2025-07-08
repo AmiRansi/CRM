@@ -70,20 +70,22 @@
   <div id="client-list"></div>
 
   <script src="js/clients.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="js/navbar.js"></script>
   <script>
-    fetch("navbar.html")
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById("navbar-container").innerHTML = html;
-        const script = document.createElement("script");
-        script.src = "js/navbar.js";
-        script.onload = () => {
-          if (typeof loadTodayNotifications === "function") {
-            loadTodayNotifications();
+    $(function () {
+      fetch('navbar.html')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('navbar-container').innerHTML = data;
+          if (typeof window.loadTodayNotifications === "function") {
+            window.loadTodayNotifications();
+          } else {
+            console.error("loadTodayNotifications not defined after navbar load");
           }
-        };
-        document.body.appendChild(script);
-      });
+        })
+        .catch(error => console.error("Error loading navbar:", error));
+    });
   </script>
 </body>
 </html>
