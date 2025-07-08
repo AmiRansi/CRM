@@ -6,89 +6,165 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/navbar.css">
   <link rel="stylesheet" href="css/reminders.css">
-
-
   <!-- تاریخ شمسی -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jalalidatepicker/dist/jalalidatepicker.min.css">
   <!-- ساعت -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/clockpicker/dist/jquery-clockpicker.min.css">
+  <!-- کتابخانه persian-date -->
+  <script src="https://cdn.jsdelivr.net/npm/persian-date@1.1.0/dist/js/persian-date.min.js"></script>
 </head>
 <body>
-  <div id="navbar-container"></div>
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <span class="brand-icon">📋</span>
+      <span>CRM حرفه‌ای</span>
+    </div>
+    <button class="hamburger" aria-label="Toggle menu">☰</button>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link active"><span class="nav-icon">🏠</span> داشبورد</a>
+      <a href="clients.html" class="nav-link"><span class="nav-icon">👥</span> مشتریان</a>
+      <a href="reminders.html" class="nav-link"><span class="nav-icon">⏰</span> یادآوری‌ها</a>
+      <a href="reports.html" class="nav-link"><span class="nav-icon">📊</span> گزارش‌ها</a>
+      <a href="profile.html" class="nav-link"><span class="nav-icon">👤</span> پروفایل</a>
+      <a href="users.html" class="nav-link" id="admin-users-link" style="display: none;"><span class="nav-icon">👑</span> کاربران</a>
+      <div class="user-info">
+        <span class="user-name"><span class="nav-icon">👤</span> <span id="current-user">کاربر</span></span>
+        <button class="logout-btn">🚪 خروج</button>
+      </div>
+    </div>
+    <div class="notif-wrapper">
+      <div id="notification-icon">
+        🔔 <span id="notif-count">0</span>
+      </div>
+      <div id="notification-popup" class="hidden">
+        <div class="popup-header">
+          <h4>اعلانات امروز</h4>
+          <button class="close-popup">✕</button>
+        </div>
+        <ul id="notification-list" class="notif-list"></ul>
+      </div>
+    </div>
+  </nav>
 
-  <h1>افزودن یادآوری جدید</h1>
-  <form id="reminder-form">
-    <input type="text" id="title" placeholder="عنوان یادآوری" required>
-    <textarea id="description" placeholder="توضیحات"></textarea>
-    <input type="text" id="date" data-jdp placeholder="تاریخ (شمسی)" required>
-    <input type="text" id="time" placeholder="ساعت (24h)" required>
-    <select id="client-select" required><option value="">انتخاب مشتری</option></select>
-    <select id="priority" required>
-      <option value="">اولویت</option>
-      <option value="کم">🟢 کم</option>
-      <option value="متوسط">🟡 متوسط</option>
-      <option value="زیاد">🔴 زیاد</option>
-    </select>
-    <select id="category" required>
-      <option value="">دسته</option>
-      <option value="جلسه">📅 جلسه</option>
-      <option value="تماس">📞 تماس</option>
-      <option value="پرداخت">💳 پرداخت</option>
-      <option value="پیگیری">🔁 پیگیری</option>
-      <option value="سایر">📌 سایر</option>
-    </select>
-    <select id="repeat" required>
-      <option value="none">بدون تکرار</option>
-      <option value="daily">روزانه</option>
-      <option value="weekly">هفتگی</option>
-      <option value="monthly">ماهانه</option>
-    </select>
-    <button type="submit">ثبت</button>
-  </form>
+  <div class="container">
+    <!-- دکمه افزودن یادآوری -->
+    <button id="show-reminder-form" class="add-reminder-btn">افزودن یادآوری</button>
 
-  <hr>
-  <h2>لیست یادآورها</h2>
+    <!-- فرم افزودن یادآوری (مخفی به‌صورت پیش‌فرض) -->
+    <div class="form-section hidden">
+      <h1>افزودن یادآوری جدید</h1>
+      <form id="reminder-form">
+        <div>
+          <label for="title">عنوان:</label>
+          <input type="text" id="title" placeholder="عنوان یادآوری" required>
+        </div>
+        <div>
+          <label for="description">توضیحات:</label>
+          <textarea id="description" placeholder="توضیحات"></textarea>
+        </div>
+        <div>
+          <label for="date">تاریخ (شمسی):</label>
+          <input type="text" id="date" data-jdp placeholder="تاریخ (شمسی)" required>
+        </div>
+        <div>
+          <label for="time">ساعت (24h):</label>
+          <input type="text" id="time" placeholder="ساعت (24h)" required>
+        </div>
+        <div class="client-field">
+          <label for="client-select">مشتری:</label>
+          <div class="client-select-container">
+            <select id="client-select" required>
+              <option value="">انتخاب مشتری</option>
+            </select>
+            <button type="button" id="add-client-btn" class="add-client-btn">➕</button>
+          </div>
+        </div>
+        <div>
+          <label for="priority">اولویت:</label>
+          <select id="priority" required>
+            <option value="">اولویت</option>
+            <option value="کم">🟢 کم</option>
+            <option value="متوسط">🟡 متوسط</option>
+            <option value="زیاد">🔴 زیاد</option>
+          </select>
+        </div>
+        <div>
+          <label for="category">دسته:</label>
+          <select id="category" required>
+            <option value="">دسته</option>
+            <option value="جلسه">📅 جلسه</option>
+            <option value="تماس">📞 تماس</option>
+            <option value="پرداخت">💳 پرداخت</option>
+            <option value="پیگیری">🔁 پیگیری</option>
+            <option value="سایر">📌 سایر</option>
+          </select>
+        </div>
+        <div>
+          <label for="repeat">تکرار:</label>
+          <select id="repeat" required>
+            <option value="none">بدون تکرار</option>
+            <option value="daily">روزانه</option>
+            <option value="weekly">هفتگی</option>
+            <option value="monthly">ماهانه</option>
+          </select>
+        </div>
+        <button type="submit">ثبت</button>
+        <div class="form-message"></div>
+      </form>
+    </div>
 
-  <!-- فیلترها -->
-  <div id="filters">
-    <select id="filter-status">
-      <option value="">وضعیت: همه</option>
-      <option value="done">✅ انجام‌شده</option>
-      <option value="undone">❌ انجام‌نشده</option>
-    </select>
-    <select id="filter-priority">
-      <option value="">اولویت: همه</option>
-      <option value="کم">🟢 کم</option>
-      <option value="متوسط">🟡 متوسط</option>
-      <option value="زیاد">🔴 زیاد</option>
-    </select>
-    <select id="filter-category">
-      <option value="">دسته: همه</option>
-      <option value="جلسه">جلسه</option>
-      <option value="تماس">تماس</option>
-      <option value="پرداخت">پرداخت</option>
-      <option value="پیگیری">پیگیری</option>
-      <option value="سایر">سایر</option>
-    </select>
-    <select id="filter-client"><option value="">مشتری: همه</option></select>
-    <select id="filter-user" style="display:none"><option value="">ثبت‌کننده: همه</option></select>
-    <button onclick="applyFilters()">اعمال</button>
-    <button onclick="clearFilters()">پاک‌سازی</button>
+    <hr>
+    <h2>لیست یادآورها</h2>
+
+    <!-- فیلترها -->
+    <div id="filters">
+      <select id="filter-status">
+        <option value="">وضعیت: همه</option>
+        <option value="done">✅ انجام‌شده</option>
+        <option value="undone">❌ انجام‌نشده</option>
+      </select>
+      <select id="filter-priority">
+        <option value="">اولویت: همه</option>
+        <option value="کم">🟢 کم</option>
+        <option value="متوسط">🟡 متوسط</option>
+        <option value="زیاد">🔴 زیاد</option>
+      </select>
+      <select id="filter-category">
+        <option value="">دسته: همه</option>
+        <option value="جلسه">جلسه</option>
+        <option value="تماس">تماس</option>
+        <option value="پرداخت">پرداخت</option>
+        <option value="پیگیری">پیگیری</option>
+        <option value="سایر">سایر</option>
+      </select>
+      <div class="client-filter-container">
+        <label for="filter-client-search">جستجوی مشتری:</label>
+        <input type="text" id="filter-client-search" placeholder="جستجوی مشتری...">
+        <select id="filter-client">
+          <option value="">مشتری: همه</option>
+        </select>
+      </div>
+      <select id="filter-user" style="display:none">
+        <option value="">ثبت‌کننده: همه</option>
+      </select>
+      <button onclick="applyFilters()">اعمال</button>
+      <button onclick="clearFilters()">پاک‌سازی</button>
+    </div>
+
+    <!-- مرتب‌سازی -->
+    <div id="sort-options">
+      <label>مرتب‌سازی:</label>
+      <select id="sort-type">
+        <option value="">انتخاب کنید</option>
+        <option value="date-asc">تاریخ ↑</option>
+        <option value="date-desc">تاریخ ↓</option>
+        <option value="priority-high">اولویت (زیاد → کم)</option>
+        <option value="priority-low">اولویت (کم → زیاد)</option>
+      </select>
+    </div>
+
+    <div id="reminder-list"></div>
   </div>
-
-  <!-- مرتب‌سازی -->
-  <div id="sort-options">
-    <label>مرتب‌سازی:</label>
-    <select id="sort-type">
-      <option value="">انتخاب کنید</option>
-      <option value="date-asc">تاریخ ↑</option>
-      <option value="date-desc">تاریخ ↓</option>
-      <option value="priority-high">اولویت (زیاد → کم)</option>
-      <option value="priority-low">اولویت (کم → زیاد)</option>
-    </select>
-  </div>
-
-  <div id="reminder-list"></div>
 
   <!-- هشدار صوتی -->
   <audio id="reminder-sound" src="assets/sounds/reminder.wav" preload="auto"></audio>
@@ -97,6 +173,8 @@
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jalalidatepicker/dist/jalalidatepicker.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/clockpicker/dist/jquery-clockpicker.min.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/reminders.js"></script>
 
   <script>
     $(function () {
@@ -108,26 +186,13 @@
         donetext: 'تایید',
         twelvehour: false
       });
+      if (typeof window.loadTodayNotifications === "function") {
+        window.loadTodayNotifications();
+        console.log("loadTodayNotifications executed on page load");
+      } else {
+        console.error("loadTodayNotifications is not defined on page load");
+      }
     });
   </script>
-
-  <script src="js/reminders.js"></script>
-  <audio id="reminder-sound" src="assets/sounds/reminder.wav" preload="auto"></audio>
-  <script>
-    fetch("navbar.html")
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById("navbar-container").innerHTML = html;
-        const script = document.createElement("script");
-        script.src = "js/navbar.js";
-        script.onload = () => {
-          if (typeof loadTodayNotifications === "function") {
-            loadTodayNotifications();
-          }
-        };
-        document.body.appendChild(script);
-      });
-  </script>
-  
 </body>
 </html>

@@ -5,8 +5,10 @@
   <title>جزئیات مشتری | CRM</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/client-details.css">
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/persian-date/dist/persian-date.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/persian-datepicker/dist/js/persian-datepicker.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/persian-datepicker/dist/css/persian-datepicker.min.css">
@@ -25,7 +27,41 @@
     <p><b>وضعیت:</b> <span id="info-status"></span></p>
     <p><b>تاریخ ثبت:</b> <span id="info-date"></span></p>
     <p><b>سطح ارتباط:</b> <span id="info-rating"></span></p>
+    <div class="client-actions">
+      <button class="btn btn-edit-client">✏️ ویرایش</button>
+      <button class="btn btn-delete-client">🗑️ حذف</button>
+    </div>
   </div>
+
+  <form id="client-edit-form" class="styled-form hidden">
+    <div class="form-grid">
+      <input type="text" id="edit-company" placeholder="نام شرکت *" required>
+      <input type="text" id="edit-buyer" placeholder="نام خریدار *" required>
+      <input type="text" id="edit-phone" placeholder="شماره ثابت">
+      <input type="text" id="edit-mobile" placeholder="شماره همراه">
+      <input type="text" id="edit-email" placeholder="ایمیل">
+      <input type="text" id="edit-industry" placeholder="صنعت">
+      <input type="text" id="edit-website" placeholder="وب‌سایت">
+      <input type="text" id="edit-address" placeholder="آدرس">
+      <input type="text" id="edit-lead" placeholder="سرنخ">
+      <select id="edit-status">
+        <option value="فعال">فعال</option>
+        <option value="غیرفعال">غیرفعال</option>
+      </select>
+      <select id="edit-rating">
+        <option value="5">⭐️⭐️⭐️⭐️⭐️</option>
+        <option value="4">⭐️⭐️⭐️⭐️</option>
+        <option value="3">⭐️⭐️⭐️</option>
+        <option value="2">⭐️⭐️</option>
+        <option value="1">⭐️</option>
+      </select>
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="submit-btn">💾 به‌روزرسانی مشتری</button>
+      <button type="button" class="cancel-btn">لغو</button>
+    </div>
+    <div class="form-message"></div>
+  </form>
 
   <div id="tabs">
     <button class="tab-btn" data-tab="reports">📊 گزارش‌ها</button>
@@ -42,22 +78,45 @@
     </div>
 
     <div id="reminders" class="tab">
+      <form id="reminder-edit-form" class="styled-form hidden">
+        <div class="form-grid">
+          <input type="text" id="edit-reminder-title" placeholder="عنوان یادآور *" required>
+          <input type="text" id="edit-reminder-date" placeholder="تاریخ (YYYY/MM/DD) *" required>
+          <textarea id="edit-reminder-description" placeholder="توضیحات" rows="4"></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="submit-btn">💾 به‌روزرسانی یادآور</button>
+          <button type="button" class="cancel-btn">لغو</button>
+        </div>
+        <div class="form-message"></div>
+      </form>
       <ul id="reminder-list"></ul>
     </div>
 
     <div id="notes" class="tab">
       <textarea id="internal-note" placeholder="یادداشت داخلی..." rows="4" style="width:100%"></textarea><br>
       <button id="save-note">💾 ذخیره یادداشت</button>
+      <div class="form-message"></div>
 
       <hr>
       <h4>🔎 فیلتر یادداشت‌ها</h4>
-      <label>از تاریخ:</label>
-      <input type="text" id="note-filter-from">
-      <label>تا تاریخ:</label>
-      <input type="text" id="note-filter-to">
-      <label>کلمه کلیدی:</label>
-      <input type="text" id="note-keyword">
-      <button id="apply-note-filter">فیلتر</button>
+      <div class="filter-container">
+        <div class="filter-item">
+          <label for="note-filter-from">از تاریخ:</label>
+          <input type="text" id="note-filter-from">
+        </div>
+        <div class="filter-item">
+          <label for="note-filter-to">تا تاریخ:</label>
+          <input type="text" id="note-filter-to">
+        </div>
+        <div class="filter-item">
+          <label for="note-keyword">کلمه کلیدی:</label>
+          <input type="text" id="note-keyword">
+        </div>
+        <div class="filter-item">
+          <button id="apply-note-filter">فیلتر</button>
+        </div>
+      </div>
 
       <h4>🗂 یادداشت‌های قبلی</h4>
       <ul id="note-list" class="note-list"></ul>

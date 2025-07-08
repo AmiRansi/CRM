@@ -1,22 +1,31 @@
-<!-- navbar.html -->
 <nav class="navbar">
-  <div class="navbar-right">
-    <a href="index.html" class="active">🏠 داشبورد</a>
-    <a href="clients.html">👥 مشتریان</a>
-    <a href="reminders.html">⏰ یادآورها</a>
-    <a href="reports.html">📊 گزارش‌ها</a>
-    <a href="profile.html">👤 پروفایل</a>
-    <a href="users.html" id="admin-users-link" style="display: none;">👑 کاربران</a>
+  <div class="navbar-brand">
+    <span class="brand-icon">📋</span>
+    <span>CRM حرفه‌ای</span>
   </div>
-
-  <div class="navbar-left">
-    <div class="notif-wrapper">
-      <div id="notification-icon" onclick="toggleNotifications()">
-        🔔 <span id="notif-count">0</span>
+  <button class="hamburger" aria-label="Toggle menu">☰</button>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link active"><span class="nav-icon">🏠</span> داشبورد</a>
+    <a href="clients.html" class="nav-link"><span class="nav-icon">👥</span> مشتریان</a>
+    <a href="reminders.html" class="nav-link"><span class="nav-icon">⏰</span> یادآوری‌ها</a>
+    <a href="reports.html" class="nav-link"><span class="nav-icon">📊</span> گزارش‌ها</a>
+    <a href="profile.html" class="nav-link"><span class="nav-icon">👤</span> پروفایل</a>
+    <a href="users.html" class="nav-link" id="admin-users-link" style="display: none;"><span class="nav-icon">👑</span> کاربران</a>
+    <div class="user-info">
+      <span class="user-name"><span class="nav-icon">👤</span> <span id="current-user">کاربر</span></span>
+      <button class="logout-btn">🚪 خروج</button>
+    </div>
+  </div>
+  <div class="notif-wrapper">
+    <div id="notification-icon">
+      🔔 <span id="notif-count">0</span>
+    </div>
+    <div id="notification-popup" class="hidden">
+      <div class="popup-header">
+        <h4>اعلانات امروز</h4>
+        <button class="close-popup">✕</button>
       </div>
-      <div id="notification-popup">
-        <ul id="notification-list" class="notif-list"></ul>
-      </div>
+      <ul id="notification-list" class="notif-list"></ul>
     </div>
   </div>
 </nav>
