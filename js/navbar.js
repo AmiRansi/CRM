@@ -6,8 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const currentUserElement = document.getElementById("current-user");
   if (currentUserElement) {
     currentUserElement.textContent = currentUser.username;
+    console.log("Current user set:", currentUser.username);
   } else {
-    console.error("Element #current-user not found in DOM");
+    console.warn("Element #current-user not found in DOM");
   }
 
   // نمایش لینک مدیریت کاربران برای ادمین
@@ -15,28 +16,30 @@ document.addEventListener("DOMContentLoaded", () => {
     const adminLink = document.getElementById("admin-users-link");
     if (adminLink) {
       adminLink.style.display = "inline-block";
+      console.log("Admin users link displayed");
     } else {
-      console.error("Element #admin-users-link not found in DOM");
+      console.warn("Element #admin-users-link not found in DOM");
     }
   }
 
   // لود اعلانات امروز
   window.loadTodayNotifications = function () {
-    console.log("loadTodayNotifications called");
+    console.log("loadTodayNotifications called for page:", window.location.pathname);
     const reminders = JSON.parse(localStorage.getItem("reminders")) || [];
     const isAdmin = currentUser.role === "admin";
     const notifList = document.getElementById("notification-list");
     const notifCount = document.getElementById("notif-count");
 
+    // بررسی وجود المان‌های موردنیاز
     if (!notifList || !notifCount) {
-      console.error("Notification elements not found:", { notifList, notifCount });
+      console.warn("Notification elements not found:", { notifList: !!notifList, notifCount: !!notifCount });
       return;
     }
 
     notifList.innerHTML = "";
     let count = 0;
 
-    // 📆 تاریخ امروز (بدون persianDate برای ساده‌سازی)
+    // 📆 تاریخ امروز
     const today = new Date().toLocaleDateString("fa-IR", {
       year: "numeric",
       month: "2-digit",
@@ -98,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
       popup.classList.toggle("hidden");
       console.log("Notification popup toggled:", !popup.classList.contains("hidden"));
     } else {
-      console.error("Element #notification-popup not found in DOM");
+      console.warn("Element #notification-popup not found in DOM");
     }
   };
 
@@ -108,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
     notificationIcon.addEventListener("click", window.toggleNotifications);
     console.log("Notification icon click event attached");
   } else {
-    console.error("Element #notification-icon not found in DOM");
+    console.warn("Element #notification-icon not found in DOM");
   }
 
   // بستن popup با دکمه
@@ -122,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   } else {
-    console.error("Element .close-popup not found in DOM");
+    console.warn("Element .close-popup not found in DOM");
   }
 
   // بستن popup با کلیک خارج
@@ -145,7 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   } else {
-    console.error("Element .logout-btn not found in DOM");
+    console.warn("Element .logout-btn not found in DOM");
   }
 
   // منوی همبرگری
@@ -155,6 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
     hamburger.addEventListener("click", () => {
       navLinks.classList.toggle("hidden");
       hamburger.textContent = navLinks.classList.contains("hidden") ? "☰" : "✕";
+      console.log("Hamburger menu toggled:", !navLinks.classList.contains("hidden"));
     });
 
     document.querySelectorAll(".nav-link").forEach(link => {
@@ -162,17 +166,28 @@ document.addEventListener("DOMContentLoaded", () => {
         if (window.innerWidth <= 768) {
           navLinks.classList.add("hidden");
           hamburger.textContent = "☰";
+          console.log("Nav link clicked, menu closed");
         }
       });
     });
   } else {
-    console.error("Hamburger or nav-links not found:", { hamburger, navLinks });
+    console.warn("Hamburger or nav-links not found:", { hamburger: !!hamburger, navLinks: !!navLinks });
   }
 
-  // اجرای اولیه
+  // اجرای اولیه نوتیفیکیشن‌ها
   try {
     window.loadTodayNotifications();
   } catch (e) {
     console.error("Error in loadTodayNotifications:", e);
   }
+
+  // به‌روزرسانی دوره‌ای اعلان‌ها (هر 30 ثانیه)
+  setInterval(() => {
+    try {
+      window.loadTodayNotifications();
+      console.log("Periodic notifications update");
+    } catch (e) {
+      console.error("Error in periodic loadTodayNotifications:", e);
+    }
+  }, 30000);
 });

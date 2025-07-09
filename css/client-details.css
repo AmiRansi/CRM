@@ -1,859 +1,858 @@
-/* تعریف متغیرهای CSS برای هماهنگی با تم یادآوری‌ها */
 :root {
-    --primary-color: #2c3e50; /* سرمه‌ای تیره */
-    --accent-color: #ed1c22; /* قرمز تم */
-    --accent-hover: #c81016; /* قرمز تیره‌تر برای hover */
-    --success-color: #28a745; /* سبز */
-    --success-hover: #218838; /* سبز تیره‌تر */
-    --clear-color: #6c757d; /* خاکستری */
-    --clear-hover: #5a6268; /* خاکستری تیره‌تر */
-    --error-color: #d9534f; /* قرمز برای خطا */
-    --background-color: #e6eaf0; /* آبی خاکستری ملایم */
-    --card-background: #ffffff; /* سفید */
-    --card-gradient: linear-gradient(145deg, #ffffff, #f8fafc); /* گرادیان کارت */
-    --border-color: #d1d5db; /* خاکستری روشن */
-    --shadow-color: rgba(0, 0, 0, 0.08); /* سایه ملایم */
-    --font-family: 'vazir', 'Segoe UI', Tahoma, sans-serif; /* فونت وزیر */
-    --border-radius: 16px; /* شعاع حاشیه */
-    --transition: all 0.3s ease; /* انیمیشن نرم */
-  }
-  
-  /* استایل‌های کلی */
-  body {
-    font-family: var(--font-family);
-    direction: rtl;
-    background-color: var(--background-color);
-    color: #343a40;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
+  --primary-color: #2c3e50;
+  --accent-color: #ed1c22;
+  --accent-hover: #c81016;
+  --success-color: #28a745;
+  --success-hover: #218838;
+  --clear-color: #6c757d;
+  --clear-hover: #5a6268;
+  --error-color: #d9534f;
+  --background-color: #e6eaf0;
+  --card-background: #ffffff;
+  --card-gradient: linear-gradient(145deg, #ffffff, #f8fafc);
+  --border-color: #d1d5db;
+  --shadow-color: rgba(0, 0, 0, 0.08);
+  --font-family: 'vazir', 'Segoe UI', Tahoma, sans-serif;
+  --border-radius: 16px;
+  --transition: all 0.3s ease;
+}
+
+body {
+  font-family: var(--font-family);
+  direction: rtl;
+  background-color: var(--background-color);
+  color: #343a40;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  color: var(--primary-color);
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 30px;
+  position: relative;
+  padding-bottom: 12px;
+}
+
+h1::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 4px;
+  background: linear-gradient(to right, transparent, var(--accent-color), transparent);
+  border-radius: 2px;
+}
+
+h4 {
+  color: var(--accent-color);
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+h4::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(to left, var(--accent-color), transparent);
+  border-radius: 2px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  margin: 30px 0;
+}
+
+.always-visible {
+  background: var(--card-gradient);
+  padding: 30px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 8px 24px var(--shadow-color);
+  margin-bottom: 40px;
+  border: 2px solid rgba(237, 28, 34, 0.1);
+  transition: var(--transition);
+}
+
+.always-visible:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  border-color: var(--accent-color);
+}
+
+.always-visible p {
+  font-size: 1.2rem;
+  margin: 12px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.always-visible p b {
+  color: var(--accent-color);
+  font-weight: 600;
+  min-width: 120px;
+}
+
+.always-visible p span {
+  color: #1f2937;
+}
+
+.client-actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.client-actions .btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  transition: var(--transition);
+  box-shadow: 0 3px 8px var(--shadow-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.client-actions .btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.4s ease;
+}
+
+.client-actions .btn:hover::before {
+  left: 100%;
+}
+
+.client-actions .btn-edit-client {
+  background: linear-gradient(90deg, #f0ad4e, #facc15);
+  color: #fff;
+}
+
+.client-actions .btn-edit-client:hover {
+  background: linear-gradient(90deg, #ec971f, #eab308);
+}
+
+.client-actions .btn-delete-client {
+  background: linear-gradient(90deg, #d9534f, #f87171);
+  color: #fff;
+}
+
+.client-actions .btn-delete-client:hover {
+  background: linear-gradient(90deg, #c9302c, #dc2626);
+}
+
+.styled-form {
+  background: var(--card-gradient);
+  padding: 40px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 8px 24px var(--shadow-color);
+  margin-bottom: 40px;
+  border: 1px solid #e5e7eb;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.styled-form:not(.hidden) {
+  opacity: 1;
+  transform: translateY(0);
+  max-height: 1000px;
+  visibility: visible;
+  transition: opacity 0.5s ease, transform 0.5s ease, max-height 0.5s ease;
+}
+
+.styled-form.hidden {
+  opacity: 0;
+  transform: translateY(20px);
+  max-height: 0;
+  visibility: hidden;
+  padding: 0 40px;
+  margin-bottom: 0;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 20px 10px;
+}
+
+.styled-form input,
+.styled-form select,
+.styled-form textarea {
+  width: 100%;
+  padding: 16px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: 16px;
+  font-family: var(--font-family);
+  box-sizing: border-box;
+  background-color: #f9fafb;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: var(--transition);
+}
+
+.styled-form input:focus,
+.styled-form select:focus,
+.styled-form textarea:focus {
+  border-color: var(--accent-color);
+  outline: none;
+  box-shadow: 0 0 0 0.25rem rgba(237, 28, 34, 0.3);
+  background-color: #fff;
+}
+
+.styled-form input::placeholder,
+.styled-form textarea::placeholder {
+  color: #9ca3af;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.styled-form select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%231f2937' d='M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: left 15px center;
+  padding-right: 50px;
+  padding-left: 20px;
+  cursor: pointer;
+}
+
+.styled-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.submit-btn,
+.cancel-btn,
+.add-note-btn,
+.add-reminder-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.submit-btn,
+.add-note-btn,
+.add-reminder-btn {
+  background: linear-gradient(90deg, var(--accent-color), #f87171);
+  color: #fff;
+}
+
+.submit-btn:hover,
+.add-note-btn:hover,
+.add-reminder-btn:hover {
+  background: linear-gradient(90deg, var(--accent-hover), #dc2626);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(237, 28, 34, 0.4);
+}
+
+.cancel-btn {
+  background: linear-gradient(90deg, var(--clear-color), var(--clear-hover));
+  color: #fff;
+}
+
+.cancel-btn:hover {
+  background: linear-gradient(90deg, var(--clear-hover), #4b5563);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.form-message {
+  margin: 1.5rem 0;
+  padding: 14px;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  display: none;
+}
+
+.form-message.show {
+  opacity: 1;
+  transform: translateY(0);
+  display: block;
+}
+
+.form-message.success {
+  background-color: var(--success-color);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+}
+
+.form-message.error {
+  background-color: var(--error-color);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(217, 83, 79, 0.3);
+}
+
+#tabs {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  background: var(--card-background);
+  color: var(--primary-color);
+  padding: 12px 24px;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 3px 8px var(--shadow-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.tab-btn:hover {
+  background: linear-gradient(90deg, var(--accent-color), #f87171);
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(237, 28, 34, 0.3);
+}
+
+.tab-btn.active {
+  background: linear-gradient(90deg, var(--accent-color), #f87171);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(237, 28, 34, 0.4);
+}
+
+.tab-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.4s ease;
+}
+
+.tab-btn:hover::before {
+  left: 100%;
+}
+
+.tab {
+  display: none;
+}
+
+.tab.active {
+  display: block;
+  background: var(--card-gradient);
+  padding: 30px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 8px 24px var(--shadow-color);
+  border: 1px solid #e5e7eb;
+}
+
+.chart-container {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto 30px;
+  padding: 20px;
+  background: #fff;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 12px var(--shadow-color);
+  aspect-ratio: 4 / 3;
+  max-height: 400px;
+}
+
+#report-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#report-list li {
+  background: #fff;
+  padding: 15px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  color: #1f2937;
+  box-shadow: 0 2px 8px var(--shadow-color);
+  transition: var(--transition);
+}
+
+#report-list li:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#reminder-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+#reminder-list li {
+  background: var(--card-gradient);
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 12px var(--shadow-color);
+  position: relative;
+  border: 2px solid rgba(237, 28, 34, 0.1);
+  transition: var(--transition);
+}
+
+#reminder-list li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  border-color: var(--accent-color);
+}
+
+#reminder-list li::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--accent-color), var(--accent-hover));
+  border-top-left-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
+}
+
+.reminder-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.reminder-header span b {
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+.reminder-header span small {
+  color: #4b5563;
+  font-size: 0.9rem;
+}
+
+.reminder-content {
+  font-size: 1.1rem;
+  color: #1f2937;
+  line-height: 1.5;
+  padding: 10px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.reminder-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.reminder-actions button {
+  background: none;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.reminder-actions .edit-reminder {
+  background: linear-gradient(90deg, #f0ad4e, #facc15);
+  color: #fff;
+}
+
+.reminder-actions .edit-reminder:hover {
+  background: linear-gradient(90deg, #ec971f, #eab308);
+  transform: translateY(-2px);
+}
+
+.reminder-actions .delete-reminder {
+  background: linear-gradient(90deg, #d9534f, #f87171);
+  color: #fff;
+}
+
+.reminder-actions .delete-reminder:hover {
+  background: linear-gradient(90deg, #c9302c, #dc2626);
+  transform: translateY(-2px);
+}
+
+#notes {
+  padding: 30px;
+}
+
+#internal-note {
+  width: 100%;
+  padding: 16px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: 16px;
+  font-family: var(--font-family);
+  background-color: #f9fafb;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: var(--transition);
+  resize: vertical;
+  min-height: 100px;
+}
+
+#internal-note:focus {
+  border-color: var(--accent-color);
+  outline: none;
+  box-shadow: 0 0 0 0.25rem rgba(237, 28, 34, 0.3);
+  background-color: #fff;
+}
+
+#save-note {
+  background: linear-gradient(90deg, var(--accent-color), #f87171);
+  color: #fff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 4px 12px rgba(237, 28, 34, 0.3);
+  margin-top: 15px;
+}
+
+#save-note:hover {
+  background: linear-gradient(90deg, var(--accent-hover), #dc2626);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(237, 28, 34, 0.4);
+}
+
+#save-note:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(237, 28, 34, 0.2);
+}
+
+.filter-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.filter-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filter-item label {
+  font-size: 1rem;
+  color: var(--primary-color);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.filter-item input,
+#apply-note-filter {
+  padding: 10px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: 14px;
+  font-family: var(--font-family);
+  background-color: #f9fafb;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: var(--transition);
+}
+
+.filter-item input {
+  width: 150px;
+}
+
+.filter-item input:focus {
+  border-color: var(--accent-color);
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(237, 28, 34, 0.2);
+  background-color: #fff;
+}
+
+#apply-note-filter {
+  background: linear-gradient(90deg, var(--accent-color), #f87171);
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(237, 28, 34, 0.3);
+}
+
+#apply-note-filter:hover {
+  background: linear-gradient(90deg, var(--accent-hover), #dc2626);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(237, 28, 34, 0.4);
+}
+
+#apply-note-filter:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(237, 28, 34, 0.2);
+}
+
+.note-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.note-list li {
+  background: var(--card-gradient);
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 12px var(--shadow-color);
+  position: relative;
+  border: 2px solid rgba(237, 28, 34, 0.1);
+  transition: var(--transition);
+}
+
+.note-list li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  border-color: var(--accent-color);
+}
+
+.note-list li::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--accent-color), var(--accent-hover));
+  border-top-left-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
+}
+
+.note-list .note-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.note-list .note-header span b {
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+.note-list .note-header span small {
+  color: #4b5563;
+  font-size: 0.9rem;
+}
+
+.note-list .note-content {
+  font-size: 1.1rem;
+  color: #1f2937;
+  line-height: 1.5;
+  padding: 10px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.note-list .note-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.note-list .note-actions button {
+  background: none;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.note-list .edit-note {
+  background: linear-gradient(90deg, #f0ad4e, #facc15);
+  color: #fff;
+}
+
+.note-list .edit-note:hover {
+  background: linear-gradient(90deg, #ec971f, #eab308);
+  transform: translateY(-2px);
+}
+
+.note-list .delete-note {
+  background: linear-gradient(90deg, #d9534f, #f87171);
+  color: #fff;
+}
+
+.note-list .delete-note:hover {
+  background: linear-gradient(90deg, #c9302c, #dc2626);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
   .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  h1 {
-    color: var(--primary-color);
-    font-size: 2.5rem;
-    text-align: center;
-    margin-bottom: 30px;
-    position: relative;
-    padding-bottom: 12px;
-  }
-  
-  h1::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    right: 50%;
-    transform: translateX(50%);
-    width: 120px;
-    height: 4px;
-    background: linear-gradient(to left, var(--accent-color), transparent);
-    border-radius: 2px;
-  }
-  
-  h4 {
-    color: var(--accent-color);
-    font-size: 1.4rem;
-    margin-bottom: 20px;
-    position: relative;
-    padding-bottom: 10px;
-  }
-  
-  h4::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 80px;
-    height: 3px;
-    background: linear-gradient(to left, var(--accent-color), transparent);
-    border-radius: 2px;
-  }
-  
-  hr {
-    border: none;
-    border-top: 1px solid var(--border-color);
-    margin: 30px 0;
-  }
-  
-  /* بخش اطلاعات مشتری */
-  .always-visible {
-    background: var(--card-gradient);
-    padding: 30px;
-    border-radius: var(--border-radius);
-    box-shadow: 0 8px 24px var(--shadow-color);
-    margin-bottom: 40px;
-    border: 2px solid rgba(237, 28, 34, 0.1);
-    transition: var(--transition);
-  }
-  
-  .always-visible:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
-    border-color: var(--accent-color);
-  }
-  
-  .always-visible p {
-    font-size: 1.2rem;
-    margin: 12px 0;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .always-visible p b {
-    color: var(--accent-color);
-    font-weight: 600;
-    min-width: 120px;
-  }
-  
-  .always-visible p span {
-    color: #1f2937;
-  }
-  
-  .client-actions {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-  
-  .client-actions .btn {
-    padding: 12px 24px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: 600;
-    transition: var(--transition);
-    box-shadow: 0 3px 8px var(--shadow-color);
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .client-actions .btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    transition: left 0.4s ease;
-  }
-  
-  .client-actions .btn:hover::before {
-    left: 100%;
-  }
-  
-  .client-actions .btn-edit-client {
-    background: linear-gradient(90deg, #f0ad4e, #facc15);
-    color: #fff;
-  }
-  
-  .client-actions .btn-edit-client:hover {
-    background: linear-gradient(90deg, #ec971f, #eab308);
-  }
-  
-  .client-actions .btn-delete-client {
-    background: linear-gradient(90deg, #d9534f, #f87171);
-    color: #fff;
-  }
-  
-  .client-actions .btn-delete-client:hover {
-    background: linear-gradient(90deg, #c9302c, #dc2626);
-  }
-  
-  /* فرم ویرایش مشتری و یادآور */
-  .styled-form {
-    background: var(--card-gradient);
-    padding: 40px;
-    border-radius: var(--border-radius);
-    box-shadow: 0 8px 24px var(--shadow-color);
-    margin-bottom: 40px;
-    border: 1px solid #e5e7eb;
-    position: relative;
-    overflow: hidden;
-    transition: var(--transition);
-    opacity: 0;
-    transform: translateY(20px);
-    max-height: 0;
-    visibility: hidden;
-  }
-  
-  .styled-form:not(.hidden) {
-    opacity: 1;
-    transform: translateY(0);
-    max-height: 1000px;
-    visibility: visible;
-    transition: opacity 0.5s ease, transform 0.5s ease, max-height 0.5s ease;
-  }
-  
-  .styled-form.hidden {
-    opacity: 0;
-    transform: translateY(20px);
-    max-height: 0;
-    visibility: hidden;
-    padding: 0 40px;
-    margin-bottom: 0;
-  }
-  
-  .form-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-    padding: 20px 10px;
-  }
-  
-  .styled-form input,
-  .styled-form select,
-  .styled-form textarea {
-    width: 100%;
-    padding: 16px;
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius);
-    font-size: 16px;
-    font-family: var(--font-family);
-    box-sizing: border-box;
-    background-color: #f9fafb;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
-    transition: var(--transition);
-  }
-  
-  .styled-form input:focus,
-  .styled-form select:focus,
-  .styled-form textarea:focus {
-    border-color: var(--accent-color);
-    outline: none;
-    box-shadow: 0 0 0 0.25rem rgba(237, 28, 34, 0.3);
-    background-color: #fff;
-  }
-  
-  .styled-form input::placeholder,
-  .styled-form textarea::placeholder {
-    color: #9ca3af;
-    font-style: italic;
-    font-weight: 400;
-  }
-  
-  .styled-form select {
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%231f2937' d='M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: left 15px center;
-    padding-right: 50px;
-    padding-left: 20px;
-    cursor: pointer;
-  }
-  
-  .styled-form textarea {
-    resize: vertical;
-    min-height: 100px;
-  }
-  
-  .form-actions {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 20px;
-  }
-  
-  .submit-btn,
-  .cancel-btn {
-    padding: 12px 24px;
-    border: none;
-    border-radius: var(--border-radius);
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: var(--transition);
-    box-shadow: 0 4px 12px var(--shadow-color);
-  }
-  
-  .submit-btn {
-    background: linear-gradient(90deg, var(--accent-color), #f87171);
-    color: #fff;
-  }
-  
-  .submit-btn:hover {
-    background: linear-gradient(90deg, var(--accent-hover), #dc2626);
-    transform: translateY(-3px);
-    box-shadow: 0 6px 16px rgba(237, 28, 34, 0.4);
-  }
-  
-  .cancel-btn {
-    background: linear-gradient(90deg, var(--clear-color), var(--clear-hover));
-    color: #fff;
-  }
-  
-  .cancel-btn:hover {
-    background: linear-gradient(90deg, var(--clear-hover), #4b5563);
-    transform: translateY(-3px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-  }
-  
-  /* پیام‌های موفقیت یا خطا */
-  .form-message {
-    margin: 1.5rem 0;
-    padding: 14px;
-    border-radius: var(--border-radius);
-    font-size: 1rem;
-    text-align: center;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
-    display: none;
-  }
-  
-  .form-message.show {
-    opacity: 1;
-    transform: translateY(0);
-    display: block;
-  }
-  
-  .form-message.success {
-    background-color: var(--success-color);
-    color: #fff;
-    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
-  }
-  
-  .form-message.error {
-    background-color: var(--error-color);
-    color: #fff;
-    box-shadow: 0 2px 8px rgba(217, 83, 79, 0.3);
-  }
-  
-  /* تب‌ها */
-  #tabs {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 30px;
-    flex-wrap: wrap;
-  }
-  
-  .tab-btn {
-    background: var(--card-background);
-    color: var(--primary-color);
-    padding: 12px 24px;
-    border: none;
-    border-radius: var(--border-radius);
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: var(--transition);
-    box-shadow: 0 3px 8px var(--shadow-color);
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .tab-btn:hover {
-    background: linear-gradient(90deg, var(--accent-color), #f87171);
-    color: #fff;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 16px rgba(237, 28, 34, 0.3);
-  }
-  
-  .tab-btn.active {
-    background: linear-gradient(90deg, var(--accent-color), #f87171);
-    color: #fff;
-    box-shadow: 0 4px 12px rgba(237, 28, 34, 0.4);
-  }
-  
-  .tab-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    transition: left 0.4s ease;
-  }
-  
-  .tab-btn:hover::before {
-    left: 100%;
-  }
-  
-  /* محتوای تب‌ها */
-  .tab {
-    display: none;
-    background: var(--card-gradient);
-    padding: 30px;
-    border-radius: var(--border-radius);
-    box-shadow: 0 8px 24px var(--shadow-color);
-    border: 1px solid #e5e7eb;
-  }
-  
-  .tab.active {
-    display: block;
-  }
-  
-  /* نمودار گزارش‌ها */
-  .chart-container {
-    max-width: 100%;
-    margin-bottom: 30px;
-    padding: 20px;
-    background: #fff;
-    border-radius: var(--border-radius);
-    box-shadow: 0 4px 12px var(--shadow-color);
-  }
-  
-  /* لیست گزارش‌ها */
-  #report-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  #report-list li {
-    background: #fff;
-    padding: 15px;
-    margin-bottom: 12px;
-    border-radius: 10px;
-    font-size: 1.1rem;
-    color: #1f2937;
-    box-shadow: 0 2px 8px var(--shadow-color);
-    transition: var(--transition);
-  }
-  
-  #report-list li:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* لیست یادآورها */
-  #reminder-list {
-    list-style: none;
-    padding: 0;
-    margin: 20px 0;
-  }
-  
-  #reminder-list li {
-    background: var(--card-gradient);
-    padding: 20px;
-    margin-bottom: 15px;
-    border-radius: var(--border-radius);
-    box-shadow: 0 4px 12px var(--shadow-color);
-    position: relative;
-    border: 2px solid rgba(237, 28, 34, 0.1);
-    transition: var(--transition);
-  }
-  
-  #reminder-list li:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    border-color: var(--accent-color);
-  }
-  
-  #reminder-list li::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 6px;
-    height: 100%;
-    background: linear-gradient(180deg, var(--accent-color), var(--accent-hover));
-    border-top-left-radius: var(--border-radius);
-    border-bottom-left-radius: var(--border-radius);
-  }
-  
-  .reminder-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .reminder-header span b {
-    color: var(--accent-color);
-    font-weight: 600;
-  }
-  
-  .reminder-header span small {
-    color: #4b5563;
-    font-size: 0.9rem;
-  }
-  
-  .reminder-content {
-    font-size: 1.1rem;
-    color: #1f2937;
-    line-height: 1.5;
-    padding: 10px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
-  }
-  
-  .reminder-actions {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .reminder-actions button {
-    background: none;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: var(--transition);
-  }
-  
-  .reminder-actions .edit-reminder {
-    background: linear-gradient(90deg, #f0ad4e, #facc15);
-    color: #fff;
-  }
-  
-  .reminder-actions .edit-reminder:hover {
-    background: linear-gradient(90deg, #ec971f, #eab308);
-    transform: translateY(-2px);
-  }
-  
-  .reminder-actions .delete-reminder {
-    background: linear-gradient(90deg, #d9534f, #f87171);
-    color: #fff;
-  }
-  
-  .reminder-actions .delete-reminder:hover {
-    background: linear-gradient(90deg, #c9302c, #dc2626);
-    transform: translateY(-2px);
-  }
-  
-  /* بخش یادداشت‌ها */
-  #notes {
-    padding: 30px;
-  }
-  
-  #internal-note {
-    width: 100%;
-    padding: 16px;
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius);
-    font-size: 16px;
-    font-family: var(--font-family);
-    background-color: #f9fafb;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
-    transition: var(--transition);
-    resize: vertical;
-    min-height: 100px;
-  }
-  
-  #internal-note:focus {
-    border-color: var(--accent-color);
-    outline: none;
-    box-shadow: 0 0 0 0.25rem rgba(237, 28, 34, 0.3);
-    background-color: #fff;
-  }
-  
-  #save-note {
-    background: linear-gradient(90deg, var(--accent-color), #f87171);
-    color: #fff;
-    padding: 12px 24px;
-    border: none;
-    border-radius: var(--border-radius);
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: var(--transition);
-    box-shadow: 0 4px 12px rgba(237, 28, 34, 0.3);
-    margin-top: 15px;
-  }
-  
-  #save-note:hover {
-    background: linear-gradient(90deg, var(--accent-hover), #dc2626);
-    transform: translateY(-3px);
-    box-shadow: 0 6px 16px rgba(237, 28, 34, 0.4);
-  }
-  
-  #save-note:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 8px rgba(237, 28, 34, 0.2);
-  }
-  
-  /* فیلتر یادداشت‌ها */
-  .filter-container {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-  }
-  
-  .filter-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  
-  .filter-item label {
-    font-size: 1rem;
-    color: var(--primary-color);
-    font-weight: 500;
-    white-space: nowrap;
-  }
-  
-  .filter-item input,
-  #apply-note-filter {
-    padding: 10px 14px;
-    border: 1px solid var(--border-color);
-    border-radius: var(--border-radius);
-    font-size: 14px;
-    font-family: var(--font-family);
-    background-color: #f9fafb;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
-    transition: var(--transition);
-  }
-  
-  .filter-item input {
-    width: 150px;
-  }
-  
-  .filter-item input:focus {
-    border-color: var(--accent-color);
-    outline: none;
-    box-shadow: 0 0 0 0.2rem rgba(237, 28, 34, 0.2);
-    background-color: #fff;
-  }
-  
-  #apply-note-filter {
-    background: linear-gradient(90deg, var(--accent-color), #f87171);
-    color: #fff;
-    border: none;
-    font-weight: 600;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(237, 28, 34, 0.3);
-  }
-  
-  #apply-note-filter:hover {
-    background: linear-gradient(90deg, var(--accent-hover), #dc2626);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(237, 28, 34, 0.4);
-  }
-  
-  #apply-note-filter:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 8px rgba(237, 28, 34, 0.2);
-  }
-  
-  /* لیست یادداشت‌ها */
-  .note-list {
-    list-style: none;
-    padding: 0;
-    margin: 20px 0;
-  }
-  
-  .note-list li {
-    background: var(--card-gradient);
-    padding: 20px;
-    margin-bottom: 15px;
-    border-radius: var(--border-radius);
-    box-shadow: 0 4px 12px var(--shadow-color);
-    position: relative;
-    border: 2px solid rgba(237, 28, 34, 0.1);
-    transition: var(--transition);
-  }
-  
-  .note-list li:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    border-color: var(--accent-color);
-  }
-  
-  .note-list li::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 6px;
-    height: 100%;
-    background: linear-gradient(180deg, var(--accent-color), var(--accent-hover));
-    border-top-left-radius: var(--border-radius);
-    border-bottom-left-radius: var(--border-radius);
-  }
-  
-  .note-list .note-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .note-list .note-header span b {
-    color: var(--accent-color);
-    font-weight: 600;
-  }
-  
-  .note-list .note-header span small {
-    color: #4b5563;
-    font-size: 0.9rem;
-  }
-  
-  .note-list .note-content {
-    font-size: 1.1rem;
-    color: #1f2937;
-    line-height: 1.5;
-    padding: 10px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
-  }
-  
-  .note-list .note-actions {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .note-list .note-actions button {
-    background: none;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: var(--transition);
-  }
-  
-  .note-list .edit-note {
-    background: linear-gradient(90deg, #f0ad4e, #facc15);
-    color: #fff;
-  }
-  
-  .note-list .edit-note:hover {
-    background: linear-gradient(90deg, #ec971f, #eab308);
-    transform: translateY(-2px);
-  }
-  
-  .note-list .delete-note {
-    background: linear-gradient(90deg, #d9534f, #f87171);
-    color: #fff;
-  }
-  
-  .note-list .delete-note:hover {
-    background: linear-gradient(90deg, #c9302c, #dc2626);
-    transform: translateY(-2px);
-  }
-  
-  /* پاسخ‌گویی برای موبایل */
-  @media (max-width: 768px) {
-    .container {
       padding: 15px;
-    }
-  
-    h1 {
+  }
+
+  h1 {
       font-size: 2rem;
-    }
-  
-    .always-visible {
+  }
+
+  .always-visible {
       padding: 20px;
-    }
-  
-    .always-visible p {
+  }
+
+  .always-visible p {
       font-size: 1rem;
       flex-direction: column;
       align-items: flex-end;
       gap: 5px;
-    }
-  
-    .always-visible p b {
+  }
+
+  .always-visible p b {
       min-width: unset;
-    }
-  
-    .client-actions {
+  }
+
+  .client-actions {
       flex-direction: column;
       align-items: stretch;
-    }
-  
-    .client-actions .btn {
+  }
+
+  .client-actions .btn {
       width: 100%;
       text-align: center;
-    }
-  
-    .styled-form {
+  }
+
+  .styled-form {
       padding: 25px;
-    }
-  
-    .form-grid {
+  }
+
+  .form-grid {
       grid-template-columns: 1fr;
-    }
-  
-    .form-actions {
+  }
+
+  .form-actions {
       flex-direction: column;
-    }
-  
-    .submit-btn,
-    .cancel-btn {
+  }
+
+  .submit-btn,
+  .cancel-btn,
+  .add-note-btn,
+  .add-reminder-btn {
       width: 100%;
       padding: 10px;
-    }
-  
-    #tabs {
+  }
+
+  #tabs {
       flex-direction: column;
       align-items: stretch;
-    }
-  
-    .tab-btn {
+  }
+
+  .tab-btn {
       padding: 10px;
       font-size: 14px;
-    }
-  
-    .tab {
+  }
+
+  .tab {
       padding: 20px;
-    }
-  
-    #internal-note {
+  }
+
+  #internal-note {
       font-size: 14px;
-    }
-  
-    .filter-container {
+  }
+
+  .filter-container {
       flex-direction: row;
       flex-wrap: wrap;
       gap: 10px;
-    }
-  
-    .filter-item {
+  }
+
+  .filter-item {
       flex: 1;
       min-width: 120px;
-    }
-  
-    .filter-item input {
+  }
+
+  .filter-item input {
       width: 100%;
-    }
-  
-    #apply-note-filter {
+  }
+
+  #apply-note-filter {
       width: 100%;
       max-width: 120px;
-    }
-  
-    #reminder-list li,
-    .note-list li {
+  }
+
+  .chart-container {
+      max-width: 100%;
+      aspect-ratio: 3 / 2;
+      max-height: 300px;
+  }
+
+  #reminder-list li,
+  .note-list li {
       padding: 15px;
-    }
-  
-    .reminder-header,
-    .note-header {
+  }
+
+  .reminder-header,
+  .note-header {
       flex-direction: column;
       align-items: flex-end;
       gap: 8px;
-    }
-  
-    .reminder-actions,
-    .note-actions {
+  }
+
+  .reminder-actions,
+  .note-actions {
       justify-content: flex-end;
-    }
-  
-    .reminder-actions button,
-    .note-actions button {
+  }
+
+  .reminder-actions button,
+  .note-actions button {
       padding: 6px 12px;
       font-size: 12px;
-    }
   }
+}

@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   $("#email").val(user.email || "");
   $("#fullname-display").text(user.fullName || "-");
   $("#email-display").text(user.email || "-");
+  $("#join-date-display").text(user.createdAt ? new Date(user.createdAt).toLocaleDateString('fa-IR') : "-");
 
   if (user.role === "admin") {
     document.getElementById("admin-backup").style.display = "block";

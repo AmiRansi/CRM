@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <title>پروفایل | CRM</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/profile.css">
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
@@ -12,11 +14,15 @@
 
   <h1>👤 پروفایل من</h1>
 
-  <div class="card">
-    <p><b>نام کاربری:</b> <span id="username-display"></span></p>
-    <p><b>نقش کاربر:</b> <span id="role-display"></span></p>
-    <p><b>نام کامل:</b> <span id="fullname-display"></span></p>
-    <p><b>ایمیل:</b> <span id="email-display"></span></p>
+  <div class="card profile-header">
+    <div class="profile-pic"></div>
+    <div>
+      <p><b>نام کاربری:</b> <span id="username-display"></span></p>
+      <p><b>نقش کاربر:</b> <span id="role-display"></span></p>
+      <p><b>نام کامل:</b> <span id="fullname-display"></span></p>
+      <p><b>ایمیل:</b> <span id="email-display"></span></p>
+      <p><b>تاریخ عضویت:</b> <span id="join-date-display"></span></p>
+    </div>
   </div>
 
   <hr>
@@ -52,6 +58,7 @@
   </div>
 
   <script src="js/profile.js" defer></script>
+  <script src="js/navbar.js"></script>
   <script>
     fetch("navbar.html")
       .then(res => res.text())

@@ -1,0 +1,583 @@
+/* تعریف متغیرهای CSS برای یکپارچگی */
+:root {
+    --primary-color: #2c3e50;
+    --accent-color: #ed1c22;
+    --accent-hover: #c81016;
+    --success-color: #28a745;
+    --success-hover: #218838;
+    --clear-color: #6c757d;
+    --clear-hover: #5a6268;
+    --error-color: #d9534f;
+    --background-color: #e6eaf0;
+    --card-background: #ffffff;
+    --card-gradient: linear-gradient(145deg, #ffffff, #f8fafc);
+    --border-color: #d1d5db;
+    --shadow-color: rgba(0, 0, 0, 0.08);
+    --font-family: 'vazir', 'Segoe UI', Tahoma, sans-serif;
+    --border-radius: 16px;
+    --transition: all 0.3s ease;
+}
+
+/* استایل‌های کلی */
+body {
+    font-family: var(--font-family);
+    direction: rtl;
+    padding: 0;
+    background-color: var(--background-color);
+    color: #343a40;
+    line-height: 1.6;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+    padding-bottom: 12px;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 4px;
+    background: linear-gradient(to right, transparent, var(--accent-color), transparent);
+    border-radius: 2px;
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(to left, var(--accent-color), transparent);
+    border-radius: 2px;
+}
+
+/* بخش فیلترها */
+#filter-box {
+    background: var(--card-background);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 5px 15px var(--shadow-color);
+    margin-bottom: 40px;
+    border: 1px solid #e5e7eb;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 10px;
+    align-items: end;
+}
+
+#filter-box label {
+    display: block;
+    margin: 0 0 8px 0 !important;
+    padding: 0 !important;
+    font-weight: 600;
+    color: #1f2937;
+    font-size: 0.9rem;
+    transition: color var(--transition);
+}
+
+#filter-box label:hover {
+    color: var(--accent-color);
+}
+
+#filter-box input,
+#filter-box select {
+    width: 100%;
+    padding: 12px 8px 12px 12px !important;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 14px;
+    font-family: var(--font-family);
+    background-color: #f9fafb;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+    text-align: right !important;
+}
+
+#filter-box input:focus,
+#filter-box select:focus {
+    border-color: var(--accent-color);
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(237, 28, 34, 0.2);
+    background-color: #fff;
+}
+
+#filter-box input::placeholder {
+    color: #9ca3af;
+    font-style: italic;
+    font-weight: 400;
+}
+
+#filter-box select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath fill='%231f2937' d='M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: left 0px center !important;
+    cursor: pointer;
+}
+
+#filter-box button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: var(--transition);
+    box-shadow: 0 3px 8px var(--shadow-color);
+    background: linear-gradient(90deg, var(--success-color), #4ade80);
+    color: #fff;
+}
+
+#filter-box button:hover {
+    background: linear-gradient(90deg, var(--success-hover), #22c55e);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(40, 167, 69, 0.3);
+}
+
+#filter-box button:active {
+    transform: translateY(0);
+}
+
+/* دکمه‌های خروجی */
+#csv-btn, #pdf-btn, #chart-btn {
+    background: linear-gradient(90deg, var(--accent-color), #f87171);
+    color: #fff;
+    padding: 12px 24px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    transition: var(--transition);
+    box-shadow: 0 3px 8px var(--shadow-color);
+    margin: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#csv-btn:hover, #pdf-btn:hover, #chart-btn:hover {
+    background: linear-gradient(90deg, var(--accent-hover), #dc2626);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(237, 28, 34, 0.3);
+}
+
+#csv-btn:active, #pdf-btn:active, #chart-btn:active {
+    transform: translateY(0);
+}
+
+/* بخش تنظیمات نمودار */
+#chart-settings {
+    background: var(--card-background);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 5px 15px var(--shadow-color);
+    margin-bottom: 40px;
+    border: 1px solid #e5e7eb;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+#chart-settings label {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-weight: 500;
+    color: #1f2937;
+}
+
+#chart-settings select {
+    padding: 12px 8px 12px 12px !important;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 14px;
+    font-family: var(--font-family);
+    transition: var(--transition);
+    min-width: 180px;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath fill='%231f2937' d='M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: left 0px center !important;
+    background-color: #f9fafb;
+    cursor: pointer;
+    text-align: right !important;
+}
+
+#chart-settings select:focus {
+    border-color: var(--accent-color);
+    outline: none;
+    box-shadow: 0 0 0 0.25rem rgba(237, 28, 34, 0.3);
+    background-color: #fff;
+}
+
+/* کانتینر نمودار */
+#chart-container {
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto 40px;
+    padding: 20px;
+    background: #fff;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px var(--shadow-color);
+    aspect-ratio: 4 / 3;
+    max-height: 400px;
+    display: none;
+}
+
+#chart-container:not([style*="display: none"]) {
+    display: block;
+}
+
+/* دکمه افزودن گزارش دستی */
+#toggle-report-form {
+    display: block;
+    margin: 20px auto;
+    background: linear-gradient(90deg, var(--accent-color), #f87171);
+    color: #fff;
+    padding: 14px 28px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    transition: var(--transition);
+    box-shadow: 0 4px 16px rgba(237, 28, 34, 0.3);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    width: fit-content;
+}
+
+#toggle-report-form::before {
+    content: '➕';
+    font-size: 1.2rem;
+    transition: var(--transition);
+}
+
+#toggle-report-form:hover {
+    background: linear-gradient(90deg, var(--accent-hover), #dc2626);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(237, 28, 34, 0.4);
+}
+
+#toggle-report-form:hover::before {
+    transform: rotate(360deg);
+}
+
+#toggle-report-form:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(237, 28, 34, 0.2);
+}
+
+/* فرم گزارش دستی */
+#manual-report-box {
+    background: var(--card-gradient);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 8px 24px var(--shadow-color);
+    margin-bottom: 40px;
+    border: 1px solid #e5e7eb;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+    opacity: 0;
+    transform: translateY(20px);
+    max-height: 0;
+    visibility: hidden;
+}
+
+#manual-report-box:not([style*="display: none"]) {
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 1000px;
+    visibility: visible;
+    transition: opacity 0.5s ease, transform 0.5s ease, max-height 0.5s ease;
+}
+
+#manual-report-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 12px;
+    padding: 20px 0;
+}
+
+#manual-report-form label {
+    display: block;
+    margin: 0 0 8px 0 !important;
+    padding: 0 !important;
+    font-weight: 600;
+    color: #1f2937;
+    font-size: 1rem;
+    transition: color var(--transition);
+    width: auto !important;
+    line-height: 1.2;
+}
+
+#manual-report-form label:hover {
+    color: var(--accent-color);
+}
+
+#manual-report-form input[type="text"],
+#manual-report-form select,
+#manual-report-form textarea {
+    width: 100%;
+    padding: 12px 8px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 16px;
+    font-family: var(--font-family);
+    box-sizing: border-box;
+    background-color: #f9fafb;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+    text-align: right;
+}
+
+#manual-report-form input:focus,
+#manual-report-form textarea:focus,
+#manual-report-form select:focus {
+    border-color: var(--accent-color);
+    outline: none;
+    box-shadow: 0 0 0 0.25rem rgba(237, 28, 34, 0.3);
+    background-color: #fff;
+}
+
+#manual-report-form input::placeholder,
+#manual-report-form textarea::placeholder {
+    color: #9ca3af;
+    font-style: italic;
+    font-weight: 400;
+}
+
+#manual-report-form select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24'%3E%3Cpath fill='%231f2937' d='M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: left 10px center;
+    cursor: pointer;
+}
+
+#manual-report-form textarea {
+    resize: none;
+    min-height: 55px;
+    max-height: 55px;
+}
+
+#manual-report-form button[type="submit"] {
+    grid-column: 1 / -1;
+    background: linear-gradient(90deg, var(--accent-color), #f87171);
+    color: #fff;
+    padding: 14px 28px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    transition: var(--transition);
+    justify-self: center;
+    width: fit-content;
+    box-shadow: 0 4px 16px rgba(237, 28, 34, 0.3);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#manual-report-form button[type="submit"]::before {
+    content: '📝';
+    font-size: 1.2rem;
+    transition: var(--transition);
+}
+
+#manual-report-form button[type="submit"]:hover {
+    background: linear-gradient(90deg, var(--accent-hover), #dc2626);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(237, 28, 34, 0.4);
+}
+
+#manual-report-form button[type="submit"]:hover::before {
+    transform: rotate(360deg);
+}
+
+#manual-report-form button[type="submit"]:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(237, 28, 34, 0.2);
+}
+
+/* جدول گزارش‌ها */
+#log-table {
+    width: 10010px;
+    border-collapse: collapse;
+    background: var(--card-gradient);
+    border-radius: var(--border-radius);
+    box-shadow: 0 8px 24px var(--shadow-color);
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+#log-table th,
+#log-table td {
+    padding: 15px;
+    text-align: right;
+    font-size: 1rem;
+    color: #1f2937;
+    border-bottom: 1px solid var(--border-color);
+}
+
+#log-table th {
+    background: linear-gradient(90deg, var(--accent-color), #f87171);
+    color: #fff;
+    font-weight: 600;
+}
+
+#log-table tr {
+    transition: var(--transition);
+}
+
+#log-table tr:hover {
+    background: #f9fafb;
+    transform: translateY(-2px);
+}
+
+#log-table tr td {
+    border-right: 1px solid rgba(237, 28, 34, 0.1);
+}
+
+#log-table tr td:last-child {
+    border-right: none;
+}
+
+/* پیام‌های موفقیت یا خطا */
+.form-message {
+    margin: 1.5rem 0;
+    padding: 14px;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    display: none;
+}
+
+.form-message.show {
+    opacity: 1;
+    transform: translateY(0);
+    display: block;
+}
+
+.form-message.success {
+    background-color: var(--success-color);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+}
+
+.form-message.error {
+    background-color: var(--error-color);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(217, 83, 79, 0.3);
+}
+
+/* استایل‌های ریسپانسیو */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    #filter-box {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    #filter-box input,
+    #filter-box select,
+    #filter-box button {
+        width: 100%;
+        max-width: none;
+        margin-bottom: 10px;
+    }
+
+    #chart-settings {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+
+    #chart-settings select {
+        width: 100%;
+        min-width: unset;
+    }
+
+    #chart-container {
+        max-width: 100%;
+        aspect-ratio: 3 / 2;
+        max-height: 300px;
+    }
+
+    #manual-report-box {
+        padding: 25px;
+    }
+
+    #manual-report-form {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    #manual-report-form button[type="submit"] {
+        padding: 14px 25px;
+    }
+
+    #toggle-report-form {
+        padding: 12px 24px;
+        font-size: 16px;
+    }
+
+    #log-table {
+        display: block;
+        overflow-x: auto;
+    }
+
+    #log-table th,
+    #log-table td {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+}
